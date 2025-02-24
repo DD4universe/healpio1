@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthConnect - Namakkal</title>
+    <meta name="keywords" content="Your Health, Our Priority - Find the Hospitals & Clinics!">
+    <meta name="author" content="DURAI">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; background-image:linear-gradient(135deg, #0f2027, #203a43, #2c5364); color: #d3d3d3;
+            animation: dynamicBackground 10s infinite alternate;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            transition: background 1s ease-in-out; }
+        .container { margin-top: 20px; }
+        .card { background-color: #ffffff; margin-bottom: 15px; border-radius: 10px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); }
+        .btn-map { background-color: #ffb400; color: white; border-radius: 5px; }
+        .btn-appointment { background-color: #d0cfd0; color: #aa17df; border-radius: 5px;border-color: #203a43; }
+        .spinner { display: none; }
+        nav a {
+    text-decoration: none;
+    color: #ffd400; 
+    background: linear-gradient(to right, blue, navy);
+}
+      .nava{
+        background-color: #000000;
+        color: #FFD700;
+        cursor: pointer;
+      }
+      .aboutnew{
+        margin-left: 95%;
+        
+      }
+      .aboutne{
+        margin-left: 88%;
+        background-color: #000000;
+        color: #FFD700;
+        cursor: pointer;
+      }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><button class="nava mt-2 border-radius-2"> <a href="#contactForm" id="contactBtn">Doctor Secure Contact</a></button></li>
+            <li><button class="nava mt-2 border-radius-2"> <a href="#feedbackFormsss" id="contactBtn">Feedback</a></button></li>
+            <li><a href="#about" class="aboutne" id="doctorlogin">Doctor login</a></li>
+            <li><a href="#about" class="aboutnew">About</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container">
+        <h2 class="text-center text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-calendar-heart" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM1 14V4h14v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1m7-6.507c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132"/>
+          </svg>   HealthConnect- Namakkal</h2>
+        <p class="text-center"><marquee behavior="scroll" direction="left" scrollamount="8">
+            "Your Health, Our Priority – Find the Hospitals & Clinics in Namakkal!"
+        </marquee>
+        </p>
+
+        <!-- i applied Filter System -->
+        <h4 class="mt-4">🔍 Filter Healthcare Facilities</h4>
+        <form id="filterForm">
+            <div class="mb-3">
+                <label for="facilityType" class="form-label">Select Facility Type</label>
+                <select class="form-select" id="facilityType" aria-label="Select Facility Type">
+                    <option value="all">All</option>
+                    <option value="hospital">Hospitals</option>
+                    <option value="clinic">Clinics</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="specialization" class="form-label">Specialization</label>
+                <select class="form-select" id="specialization" aria-label="Select Specialization">
+                    <option value="all">All</option>
+                    <option value="general">General Physician</option>
+                    <option value="gynecologist">Gynecologist</option>
+                    <option value="pediatrics">Pediatrics</option>
+                    <option value="ophthalmology">Ophthalmology (Eye Care)</option>
+                    <option value="dermatology">Dermatology (Skin Care)</option>
+                    <option value="orthopedics">Orthopedics (Bone & Joint Care)</option>
+                    <option value="cardiology">Cardiology (Heart Care)</option>
+                    <option value="neurology">Neurology (Brain & Nervous System)</option>
+                    <option value="ent">ENT (Ear, Nose, Throat)</option>
+                    <option value="dentistry">Dentistry</option>
+                    <option value="physiotherapy">Physiotherapy & Rehabilitation</option>
+                    <option value="psychiatry">Psychiatry (Mental Health)</option>
+                    <option value="radiology">Radiology</option>
+                    <option value="oncology">Oncology (Cancer Treatment)</option>
+                    <option value="urology">Urology</option>
+                    <option value="nephrology">Nephrology (Kidney Care)</option>
+                    <option value="endocrinology">Endocrinology (Diabetes & Hormones)</option>
+                    <option value="gastroenterology">Gastroenterology (Digestive System)</option>
+                    <option value="pulmonology">Pulmonology (Lungs & Respiratory)</option>
+                    <option value="rheumatology">Rheumatology (Arthritis & Autoimmune Diseases)</option>
+                    <option value="vascular">Vascular Surgery</option>
+                    <option value="plastic_surgery">Plastic & Reconstructive Surgery</option>
+                    <option value="infectious_diseases">Infectious Diseases</option>
+                    
+                </select>
+            </div>
+            <!-- locations here -->
+            <div class="mb-3">
+                <label for="location" class="form-label">Select Location</label>
+                <select class="form-select" id="location" aria-label="Select Location">
+                    <option value="all">All</option>
+<option value="namakkal">Namakkal</option>
+<option value="rasipuram">Rasipuram</option>
+<option value="tiruchengode">Tiruchengode</option>
+<option value="pallipalayam">Pallipalayam</option>
+<option value="mohanur">Mohanur</option>
+<option value="paramathi">Paramathi</option>
+<option value="kabilarmalai">Kabilarmalai</option>
+<option value="sendhamangalam">Sendhamangalam</option>
+<option value="renganathapuram">Renganathapuram</option>
+<option value="kavandapadi">Kavandapadi</option>
+<option value="sengipatti">Sengipatti</option>
+<option value="kattuputhur">Kattuputhur</option>
+<option value="ariyalur">Ariyalur</option>
+<option value="pachapalayam">Pachapalayam</option>
+<option value="kottapalayam">Kottapalayam</option>
+<option value="vellaiyur">Vellaiyur</option>
+<option value="kalappanaickenpatti">Kalappanaickenpatti</option>
+<option value="puduchatram">Puduchatram</option>
+<option value="velur">Velur</option>
+<option value="siddhamalli">Siddhamalli</option>
+<option value="reddi-patti">Reddi Patti</option>
+
+                    
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Filter</button>
+            <div class="spinner mt-3" id="loadingSpinner">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        </form>
+
+        <!-- Healthcare Facilities List -->
+        <h4 class="mt-4">🏥 Healthcare Facilities</h4>
+        <div id="facilityList" class="row">
+            <!-- Healthcare Facility Cards -->
+
+            <div class="col-md-4 facility hospital general namakkal">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Namakkal Government Hospital</h5>
+                        <p class="card-text"><strong>Location:</strong> Namakkal</p>
+                        <p class="card-text"><strong>Specialization:</strong> General Physician</p>
+                        <p class="card-text"><strong>Timings:</strong> 24/7</p>
+                        <a href="https://www.google.com/maps?q=Namakkal+Government+Hospital" target="_blank" class="btn btn-map">View on Map</a>
+                        <a href="https://tnhealth.tn.gov.in/" target="_blank" class="btn btn-appointment">Visit Website</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 facility hospital multispecialty namakkal">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">M.M. Hospital</h5>
+                        <p class="card-text"><strong>Location:</strong> Namakkal</p>
+                        <p class="card-text"><strong>Specialization:</strong> Multispecialty</p>
+                        <p class="card-text"><strong>Timings:</strong> 24/7</p>
+                        <a href="https://www.google.com/maps?q=M.M+Hospital+Namakkal" target="_blank" class="btn btn-map">View on Map</a>
+                        <a href="https://mmhospitalnamakkal.com/" target="_blank" class="btn btn-appointment">Visit Website</a>
+                    </div>
+                </div>
+            </div>
+<!-- Thiruengode-->
+<div class="col-md-4 facility hospital general tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Tiruchengode Government Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> General Medicine</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Tiruchengode+Government+Hospital" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.cmchistn.com/specPopup.php?id=24828&module=m" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Krishna Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Krishna+Hospital+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital multispecialty tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Soorya Multispecialty Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Multispecialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Soorya+Multispecialty+Hospital+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital multispecialty tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Tirukumaran Hospitals</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Multispecialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Tirukumaran+Hospitals+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Visakan Medical Centre</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> General Medicine</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Visakan+Medical+Centre+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Kongu Nursing Home</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Nursing & General Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Kongu+Nursing+Home+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Kavitha Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> General & Emergency Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Kavitha+Hospital+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">TGN Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> General & Emergency Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=TGN+Hospital+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Dr. Velappan Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> General & Surgical Care</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 9 PM</p>
+            <a href="https://www.google.com/maps?q=Dr.+Velappan+Hospital+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">PCM Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> General & Specialized Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=PCM+Hospital+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Muthu ENT Clinic</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> ENT (Ear, Nose, Throat)</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Muthu+ENT+Clinic+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Suguna Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Suguna+Hospital+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Jayaa Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> General & Surgical Care</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 9 PM</p>
+            <a href="https://www.google.com/maps?q=Jayaa+Hospital+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Dr. Ravi Child Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Pediatrics & Child Care</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Dr.+Ravi+Child+Hospital+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Dhasssan Heart and General Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Cardiology & General Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Dhasssan+Heart+and+General+Hospital+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Dr. Nirmala Hospitals</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty & General Care</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 9 PM</p>
+            <a href="https://www.google.com/maps?q=Dr.+Nirmala+Hospitals+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Annai Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> General & Specialized Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Annai+Hospital+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Velavan Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> General & Surgical Care</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 9 PM</p>
+            <a href="https://www.google.com/maps?q=Velavan+Hospital+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">SPM Medical Centre</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> General Healthcare</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=SPM+Medical+Centre+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">JB Clinic</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> General & Family Care</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=JB+Clinic+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Shri Janani Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Maternity & General Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Shri+Janani+Hospital+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Deepem Scans & Diagnostics</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Diagnostics & Imaging</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Deepem+Scans+%26+Diagnostics+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Vajravel Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> General & Surgical Care</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 9 PM</p>
+            <a href="https://www.google.com/maps?q=Vajravel+Hospital+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Nivas Speciality Centre - ENT and Skin Specialist</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> ENT & Skin Care</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Nivas+Speciality+Centre+ENT+and+Skin+Specialist+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Thamaraikannan Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> General & Surgical Care</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 9 PM</p>
+            <a href="https://www.google.com/maps?q=Thamaraikannan+Hospital+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Rasi Speciality Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty Care</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 9 PM</p>
+            <a href="https://www.google.com/maps?q=Rasi+Speciality+Hospital+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Lakshmi Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> General & Surgical Care</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 9 PM</p>
+            <a href="https://www.google.com/maps?q=Lakshmi+Hospital+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Vivekanandha Medical College Hospital - Urban Health Centre</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty & Urban Healthcare</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Vivekanandha+Medical+College+Hospital+Urban+Health+Centre+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Dassan Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> General & Surgical Care</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 9 PM</p>
+            <a href="https://www.google.com/maps?q=Dassan+Hospital+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Thirumurugan Medicals</h5>
+            <p class="card-text"><strong>Location:</strong> Valaraigate, Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Pharmacy & General Medical Supplies</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 9 PM</p>
+            <a href="https://www.google.com/maps?q=Thirumurugan+Medicals+Valaraigate+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Kathir Eye Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Ophthalmology (Eye Care)</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Kathir+Eye+Hospital+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Kumar Medical Centre</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Pharmacy & General Medical Supplies</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 9 PM</p>
+            <a href="https://www.google.com/maps?q=Kumar+Medical+Centre+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Dr. Shanmugadhasan - Heart Specialist</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Cardiology (Heart Care)</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Dr.+Shanmugadhasan+Heart+Specialist+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Sairam Dental Clinic</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Dentistry & Oral Care</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Sairam+Dental+Clinic+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Rasi Scans</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Diagnostics & Imaging</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Rasi+Scans+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">KK Shivani Piles Fistula Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Proctology (Piles & Fistula Care)</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=KK+Shivani+Piles+Fistula+Hospital+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">INBA ENT Care</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> ENT (Ear, Nose & Throat Care)</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=INBA+ENT+Care+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Rajashree Dental Clinic</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Dentistry & Oral Care</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Rajashree+Dental+Clinic+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div><div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Gunam Dental Clinic</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Dentistry & Oral Care</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Gunam+Dental+Clinic+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Arun Eye Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Ophthalmology (Eye Care)</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Arun+Eye+Hospital+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">T.C.A Nursing Home</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> General & Surgical Care</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=T.C.A+Nursing+Home+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Vivekanandha Group of Hospitals</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty Healthcare</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Vivekanandha+Group+of+Hospitals+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Government Veterinary Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Veterinary Care (Animals)</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 5 PM</p>
+            <a href="https://www.google.com/maps?q=Government+Veterinary+Hospital+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Dr. VS Ramesh Dental Clinic</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Dentistry & Oral Care</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Dr.+VS+Ramesh+Dental+Clinic+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Rainbow Optics - Eye Clinic</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Ophthalmology (Eye Care)</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Rainbow+Optics+Eye+Clinic+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Anu Dental Clinic</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Dentistry & Oral Care</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Anu+Dental+Clinic+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Idhayam Medical Ind Pvt Ltd</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Medical Supplies & Equipment</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Idhayam+Medical+Ind+Pvt+Ltd+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Thigazh Nature Cure Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Nature Cure & Holistic Medicine</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Thigazh+Nature+Cure+Hospital+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Sree Suguna Dental & Maxillofacial Center</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Dentistry & Maxillofacial Surgery</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Sree+Suguna+Dental+%26+Maxillofacial+Center+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Suriyampalayam Government Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> General Healthcare</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Suriyampalayam+Government+Hospital+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Dr. Saranya Women's Care</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Women's Health & Care</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Dr.+Saranya+Women's+Care+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Ebee Micro Clinic Laboratory</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Diagnostic Laboratory Services</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Ebee+Micro+Clinic+Laboratory+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Dr. M Punitha</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> General Medicine</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Dr.+M+Punitha+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Nandha Dental Clinic</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Dentistry & Oral Care</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Nandha+Dental+Clinic+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Deepa Medicals</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Medical Supplies</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Deepa+Medicals+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Shri Muthulakshmi Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> General Healthcare</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Shri+Muthulakshmi+Hospital+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Kaamalai Nattu Marundhu (Jaundice Medicine)</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Traditional Medicine & Jaundice Treatment</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Kaamalai+Nattu+Marundhu+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">SVMCHRI Microbiology Laboratory</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Microbiology & Diagnostic Laboratory</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=SVMCHRI+Microbiology+Laboratory+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Urban PHC (Primary Health Centre)</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> General Healthcare & Primary Care</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 5 PM</p>
+            <a href="https://www.google.com/maps?q=Urban+PHC+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Nivrutha Clinic</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> General Healthcare</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Nivrutha+Clinic+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Durga Devi Sidha Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Siddha Medicine & General Healthcare</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Durga+Devi+Sidha+Hospital+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Raja Siddha Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Siddha Medicine & General Healthcare</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Raja+Siddha+Hospital+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Rathna Skin Care Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Skin Care & Dermatology</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Rathna+Skin+Care+Hospital+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">KSR Dental Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Dentistry & Oral Care</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=KSR+Dental+Hospital+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Gowtham Scan Centre</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Diagnostic Imaging & Scans</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Gowtham+Scan+Centre+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Kalai Medicals</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Medical Supplies & Healthcare Products</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Kalai+Medicals+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Seetha Chidambaram Homeo Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Homeopathy & General Healthcare</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Seetha+Chidambaram+Homeo+Hospital+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Dhavantri Homeo Care</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Homeopathy & General Healthcare</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Dhavantri+Homeo+Care+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Dhavantri Homeo Care</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Homeopathy & General Healthcare</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Dhavantri+Homeo+Care+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Sudha Fertility Centre</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Fertility & Reproductive Healthcare</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Sudha+Fertility+Centre+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">KS Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> General Healthcare & Emergency Services</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=KS+Hospital+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Sri Saiguru Medicals</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Medical Supplies & Healthcare Products</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Sri+Saiguru+Medicals+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Nalam Clinic</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> General Healthcare & Preventive Care</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Nalam+Clinic+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Akshika Care Centre</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> General Healthcare & Wellness</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Akshika+Care+Centre+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Swamy Vivekanandha Medical College Hospital and Research Institute</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Medical & Research Services</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Swamy+Vivekanandha+Medical+College+Hospital+and+Research+Institute+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital nursing-home tiruchengode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Kollapatty Medical Shop</h5>
+            <p class="card-text"><strong>Location:</strong> Tiruchengode</p>
+            <p class="card-text"><strong>Specialization:</strong> Medical Supplies & Healthcare Products</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 6 PM</p>
+            <a href="https://www.google.com/maps?q=Kollapatty+Medical+Shop+Tiruchengode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<!-- thiruengode hospital and clinics are completed-->
+    </div>
+
+        <!-- Secure Contact Form -->
+        <h4 class="mt-4">📩 Contact a Doctor (Private & Secure)</h4>
+        <form id="contactForm">
+            <div class="mb-3">
+                <label for="userName" class="form-label">Your Name</label>
+                <input type="text" class="form-control" id="userName" required aria-required="true">
+            </div>
+            <div class="mb-3">
+                <label for="userPhone" class="form-label">Your Mobile Number</label>
+                <input type="tel" class="form-control" id="userPhone" required aria-required="true" pattern="^\d{10}$" placeholder="Enter 10-digit mobile number">
+            </div>
+            <div class="mb-3">
+                <label for="userMessage" class="form-label">Message</label>
+                <textarea class="form-control" id="userMessage" rows="3" required aria-required="true"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Inquiry</button>
+        </form>
+        <!-- feed back-->
+        <h4 class="mt-4">📝 Feedback Form(please share your feedback)</h4>
+        <form id="feedbackForm">*
+            <div class="mb-3">
+                <label for="feedbackName" class="form-label">Your Name</label>
+                <input type="text" class="form-control" id="feedbackName" required>
+            </div>
+            <div class="mb-3">
+                <label for="feedbackMessage" class="form-label">Your Feedback</label>
+                <textarea class="form-control" id="feedbackMessage" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-success">Submit Feedback</button>
+        </form>
+        <section id="about" style="background: linear-gradient(135deg, #3a7bd5, #00d2ff); color: white; padding: 50px; text-align: center; border-radius: 10px;">
+            <h2>About HealthConnect Lite - Namakkal</h2>
+            <p style="max-width: 800px; margin: auto; font-size: 18px; line-height: 1.6;">
+                Welcome to <strong>HealthConnect Lite - Namakkal</strong>, your trusted healthcare companion! Our platform helps you 
+                easily find <strong>hospitals and clinics</strong> based on your medical needs and specialization. 
+                But we don’t stop there—we also <strong>connect doctors, clinics, and hospitals</strong>, building a seamless network 
+                for both patients and healthcare professionals.
+            </p>
+            <p style="max-width: 800px; margin: auto; font-size: 18px; line-height: 1.6;">
+                Currently serving <strong>Namakkal</strong>, we aim to <strong>expand across multiple regions in the future</strong>, 
+                bringing accessible and efficient healthcare solutions to more people.
+            </p>
+            <p style="font-size: 20px; font-weight: bold; margin-top: 20px;">🚀 Your health, your choice—simplified! Stay tuned for our growth!</p>
+        </section>
+        
+        <script>
+            $(document).ready(function() {
+                // Handle the filter form submission
+                $("#filterForm").submit(function(event) {
+                    event.preventDefault();
+                    $("#loadingSpinner").show();
+
+                    var facilityType = $("#facilityType").val();
+                    var specialization = $("#specialization").val();
+                    var location = $("#location").val();
+
+                    // Show all items initially
+                    $(".facility").show();
+
+                    // Apply filters based on selected values
+                    if (facilityType !== "all") {
+                        $(".facility").not("." + facilityType).hide();
+                    }
+                    if (specialization !== "all") {
+                        $(".facility").not("." + specialization).hide();
+                    }
+                    if (location !== "all") {
+                        $(".facility").not("." + location).hide();
+                    }
+
+                    // Hide loading spinner after 1 second
+                    setTimeout(function() {
+                        $("#loadingSpinner").hide();
+                    }, 1000);
+                });
+
+                // Handle contact form submission
+                $("#contactForm").submit(function(event) {
+                    event.preventDefault();
+
+                    // Simple validation for mobile number
+                    var mobile = $("#userPhone").val();
+                    var mobilePattern = /^\d{10}$/;
+
+                    if (!mobilePattern.test(mobile)) {
+                        alert("Please enter a valid 10-digit mobile number.");
+                        return;
+                    }
+
+                    alert("Your inquiry has been sent! The hospital/clinic will contact you via your mobile number.");
+                });
+                $("#feedbackForm").submit(function(event) {
+                    event.preventDefault();
+                    alert("Thank you for your feedback! We appreciate your input.");
+                });
+            });
+        </script>
+
+    </div>
+    <script>
+        document.getElementById("contactBtn").addEventListener("click", function(event) {
+            event.preventDefault(); // Prevent default jump behavior
+            document.getElementById("contactForm").scrollIntoView({ behavior: "smooth" });
+        });
+    </script>
+    <script>
+        document.getElementById('doctorlogin').addEventListener('click', function() {
+            window.location.href = 'doctor_Signup.html'; // Redirect to login page
+        });
+    </script>
+
+<!-- Your existing HTML structure -->
+...
+<!-- jQuery (Ensure this is included) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Hide all facility cards initially
+        $(".facility").hide();
+
+        $("#filterForm").submit(function (event) {
+            event.preventDefault(); // Prevent page reload
+            
+            $("#loadingSpinner").show(); // Show loading spinner
+            
+            // Get selected values
+            var selectedFacility = $("#facilityType").val();
+            var selectedSpecialization = $("#specialization").val();
+            var selectedLocation = $("#location").val();
+
+            setTimeout(function () {
+                $("#loadingSpinner").hide(); // Hide spinner after 500ms
+                
+                // Hide all facilities first
+                $(".facility").hide();
+                
+                // Filter and show matching facilities
+                $(".facility").filter(function () {
+                    var facilityMatch = (selectedFacility === "all") || $(this).hasClass(selectedFacility);
+                    var specializationMatch = (selectedSpecialization === "all") || $(this).hasClass(selectedSpecialization);
+                    var locationMatch = (selectedLocation === "all") || $(this).hasClass(selectedLocation);
+                    
+                    return facilityMatch && specializationMatch && locationMatch;
+                }).show();
+            }, 500); // Delay for smooth experience
+        });
+    });
+</script>
+
+</body>
+</html>
+
+</html>
