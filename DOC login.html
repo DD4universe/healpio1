@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doctor Sign-Up</title>
+    <title>Doctor Login</title>
     <style>
         body {
             margin: 0;
@@ -14,10 +14,15 @@
             justify-content: center;
             height: 100vh;
             background: linear-gradient(135deg, #4a90e2, #a1c4fd);
+            animation: gradientShift 8s infinite alternate ease-in-out;
             position: relative;
         }
 
-        /* Background animation */
+        @keyframes gradientShift {
+            0% { background: linear-gradient(135deg, #4a90e2, #a1c4fd); }
+            100% { background: linear-gradient(135deg, #1e3c72, #2a5298); }
+        }
+
         .floating-icons {
             position: fixed;
             width: 100vw;
@@ -33,25 +38,24 @@
         }
 
         @keyframes float {
-            0% { transform: translateY(0); opacity: 0.3; }
+            0% { transform: translateY(100vh); opacity: 0.3; }
             50% { opacity: 0.6; }
-            100% { transform: translateY(-100vh); opacity: 0; }
+            100% { transform: translateY(-10vh); opacity: 0; }
         }
 
-        #signup-container {
+        #login-container {
             position: relative;
             z-index: 2;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             padding: 30px;
             border-radius: 10px;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
             text-align: center;
             width: 350px;
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
         }
 
         h2 {
@@ -61,62 +65,97 @@
 
         input, button {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin: 10px 0;
             border: none;
             border-radius: 5px;
             outline: none;
         }
 
+        input {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            font-size: 14px;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
         button {
             background: #6a11cb;
             color: white;
             cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease-in-out;
         }
 
-        p {
-            color: white;
-            margin-top: 10px;
+        button:hover {
+            background: #8e44ad;
+            transform: scale(1.05);
+        }
+
+        .forgot-password {
             font-size: 12px;
+            color: white;
+            text-align: right;
+            width: 100%;
         }
 
-        a {
+        .forgot-password a {
             color: white;
             text-decoration: none;
         }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
     </style>
 </head>
 <body>
 
-    <!-- Floating medical icons -->
-    <div class="floating-icons">
-        <img src="https://cdn-icons-png.flaticon.com/512/2831/2831236.png" class="icon" style="left: 10%; animation-duration: 12s;">
-        <img src="https://cdn-icons-png.flaticon.com/512/2831/2831239.png" class="icon" style="left: 40%; animation-duration: 14s;">
-        <img src="https://cdn-icons-png.flaticon.com/512/2831/2831250.png" class="icon" style="left: 70%; animation-duration: 16s;">
-        <img src="https://cdn-icons-png.flaticon.com/512/2831/2831272.png" class="icon" style="left: 90%; animation-duration: 18s;">
-    </div>
+    <!-- Floating Medical Icons -->
+    <div class="floating-icons"></div>
 
-    <div id="signup-container">
-        <h2>DOCTOR SIGNUP</h2>
+    <div id="login-container">
+        <h2>DOCTOR LOGIN</h2>
         <input type="text" placeholder="Name">
-        <input type="text" placeholder="Age">
-        <input type="text" placeholder="Specialization">
-        <input type="text" placeholder="Clinic/Hospital Name">
-        <input type="text" placeholder="Clinic/Hospital Address">
-        <input type="text" placeholder="Contact Number">
-        <label style="color: white;">Doctor License:</label>
-        <input type="file">
-        <input type="password" placeholder="Create Password">
-        <button onclick="animateSignup()">SIGNUP</button>
-        <p>Already signed up? <a href="#">Login</a></p>
+        <input type="text" placeholder="Mobile Number">
+        <input type="password" placeholder="Password">
+        <div class="forgot-password">
+            <a href="#">Forgot Password?</a>
+        </div>
+        <button onclick="animateLogin()">LOGIN</button>
     </div>
 
     <script>
-        function animateSignup() {
-            let signupBox = document.getElementById('signup-container');
-            signupBox.style.transform = 'scale(1.1)';
-            setTimeout(() => signupBox.style.transform = 'scale(1)', 300);
+        function animateLogin() {
+            let loginBox = document.getElementById('login-container');
+            loginBox.style.transform = 'scale(1.1)';
+            setTimeout(() => loginBox.style.transform = 'scale(1)', 300);
         }
+
+        function createFloatingIcons() {
+            const icons = [
+                "https://cdn-icons-png.flaticon.com/512/2831/2831236.png",
+                "https://cdn-icons-png.flaticon.com/512/2831/2831239.png",
+                "https://cdn-icons-png.flaticon.com/512/2831/2831250.png",
+                "https://cdn-icons-png.flaticon.com/512/2831/2831272.png"
+            ];
+
+            const floatingIconsContainer = document.querySelector(".floating-icons");
+
+            for (let i = 0; i < 6; i++) {
+                let icon = document.createElement("img");
+                icon.src = icons[Math.floor(Math.random() * icons.length)];
+                icon.className = "icon";
+                icon.style.left = '${Math.random() * 100}%;'
+                icon.style.animationDuration = '${10 + Math.random() * 10}s;'
+                floatingIconsContainer.appendChild(icon);
+            }
+        }
+        createFloatingIcons();
     </script>
 
 </body>
