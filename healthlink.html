@@ -17,7 +17,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('images (6).jpeg'); /* Replace with your desired image */
+    background-image: url('image10.jpg'); /* Replace with your desired image */
     background-size: cover;  /* Ensures the image covers the entire screen */
     background-position: center center; /* Centers the image */
     background-attachment: fixed; /* Keeps the image fixed when scrolling */
@@ -57,21 +57,28 @@
     </style>
 </head>
 <body class="background">
-    <nav class="navbar navbar-expand-lg bg-body-bark">
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#"><img src="logonew.jpg" alt="Logo" width="60px" height="45px" class="d-inline-block align-text-top">
-        </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-              <a class="nav-link" href="#contactForm">Doctor Secure Contact</a>
-              <a class="nav-link pl-3" href="#feedbackForm">Feedback</a>
-              <a class="nav-link" href="##doctorlogin" id="doctorlogin">Doctor login/Signup</a>
-              <a class="nav-link" href="#about">About</a>
+            <a class="navbar-brand" href="#">
+                <img src="logo.png" alt="Logo" width="60px" height="45px" class="d-inline-block align-text-top">
+            </a>
+    
+            <!-- ✅ Correct Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" 
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <!-- ✅ Navbar Links -->
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link" href="#contactForm">Doctor Secure Contact</a>
+                    <a class="nav-link" href="#feedbackForm">Feedback</a>
+                    <a class="nav-link" href="doctor_Signup.html">Doctor Login/Signup</a>
+                    <a class="nav-link" href="medicalsignup.html">Clinic Login/Signup</a>
+                    <a class="nav-link" href="#about">About</a>
+                </div>
             </div>
-          </div>
         </div>
     </nav>
     
@@ -79,13 +86,39 @@
         <h2 class="text-center text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-calendar-heart" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4zM1 14V4h14v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1m7-6.507c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132"/>
           </svg>   HealthConnect- Namakkal</h2>
+          <button onclick="location.href='medicinedetails.html';" id="medicinedetails" 
+   style="position: fixed; top: 22%; right: 1%; padding: 20px 15px; 
+   border-radius: 10px; background-color: #007bff; color: white; border: none; 
+   cursor: pointer; font-size: 16px; z-index: 1000; opacity: 0; transform: translateY(-20px);
+   animation: fadeIn 1s forwards;">
+   Need Medicine Details?
+</button>
+
+<style>
+   /* Smooth fade-in animation */
+   @keyframes fadeIn {
+       0% { opacity: 0; transform: translateY(-20px); }
+       100% { opacity: 1; transform: translateY(0); }
+   }
+
+   /* Bounce effect on hover */
+   #medicinedetails:hover {
+       animation: bounce 0.3s ease-in-out;
+   }
+
+   @keyframes bounce {
+       0%, 100% { transform: translateY(0); }
+       50% { transform: translateY(-5px); }
+   }
+</style>
+
         <p class="text-center"><marquee behavior="scroll" direction="left" scrollamount="8">
             "Your Health, Our Priority – Find the Hospitals & Clinics in Namakkal!"
         </marquee>
         </p>
 
         <!-- i applied Filter System -->
-        <h4 class="mt-4">🔍 Filter Healthcare Facilities</h4>
+        <h4 class="mt-4" style="padding-top: 6%;">🔍 Filter Healthcare Facilities</h4>
         <form id="filterForm">
             <div class="mb-3">
                 <label for="facilityType" class="form-label">Select Facility Type</label>
@@ -1111,6 +1144,795 @@
     </div>
 </div>
 <!-- thiruengode hospital and clinics are completed-->
+ <!--Ariylur-->
+ <div class="col-md-4 facility hospital general ariyalur">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Santhi Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Ariyalur</p>
+            <p class="card-text"><strong>Specialization:</strong> Orthopedics & General Medicine</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Santhi+Hospital,+Ariyalur" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general ariyalur">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">RR Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Ariyalur</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/RR+Hospital,+Ariyalur" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general ariyalur">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Government Hospital Ariyalur</h5>
+            <p class="card-text"><strong>Location:</strong> Ariyalur</p>
+            <p class="card-text"><strong>Specialization:</strong> Public Healthcare Services</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Government+Hospital+Ariyalur" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general ariyalur">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">KMS Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Ariyalur</p>
+            <p class="card-text"><strong>Specialization:</strong> General & Emergency Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/KMS+Hospital,+Ariyalur" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general ariyalur">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">MM Multi Speciality Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Ariyalur</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty Services</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/MM+Multi+Speciality+Hospital,+Ariyalur" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general ariyalur">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Santhi Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Ariyalur</p>
+            <p class="card-text"><strong>Specialization:</strong> Orthopedics & General Medicine</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Santhi+Hospital,+Ariyalur" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Ariyalur/Santhi-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="https://santhihospital.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general ariyalur">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">MM Multi Speciality Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Ariyalur</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty Services</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/MM+Multi+Speciality+Hospital,+Ariyalur" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Ariyalur/MM-Multi-Speciality-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="https://mmhospitalariyalur.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+<!--chengalpattu-->
+<div class="col-md-4 facility hospital general chengalpattu">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Hindu Mission Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Chengalpattu</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty Services</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Hindu+Mission+Hospital,+Chengalpattu" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Chengalpattu/Hindu-Mission-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="https://www.hindumissionhospital.in" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general chengalpattu">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Balaji Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Chengalpattu</p>
+            <p class="card-text"><strong>Specialization:</strong> Orthopedics & General Medicine</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Balaji+Hospital,+Chengalpattu" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Chengalpattu/Balaji-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="https://www.balajihospital.in" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general chengalpattu">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Karpaga Vinayaga Institute of Medical Sciences</h5>
+            <p class="card-text"><strong>Location:</strong> Chengalpattu</p>
+            <p class="card-text"><strong>Specialization:</strong> Medical College & Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Karpaga+Vinayaga+Institute+of+Medical+Sciences,+Chengalpattu" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Chengalpattu/Karpaga-Vinayaga-Institute-of-Medical-Sciences" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="https://www.kvims.edu.in" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general chengalpattu">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Chettinad Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Chengalpattu</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty & Medical Research</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Chettinad+Hospital,+Chengalpattu" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Chengalpattu/Chettinad-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="https://www.chettinadhospital.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general chengalpattu">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Tagore Medical College Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Chengalpattu</p>
+            <p class="card-text"><strong>Specialization:</strong> Teaching & Multi-Specialty Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Tagore+Medical+College+Hospital,+Chengalpattu" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Chengalpattu/Tagore-Medical-College-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="https://www.tagoremch.edu.in" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+<!--chennai-->
+<div class="col-md-4 facility hospital general chennai">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Apollo Hospitals</h5>
+            <p class="card-text"><strong>Location:</strong> Chennai</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty & Advanced Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Apollo+Hospitals,+Chennai" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Chennai/Apollo-Hospitals" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="https://www.apollohospitals.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general chennai">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Fortis Malar Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Chennai</p>
+            <p class="card-text"><strong>Specialization:</strong> Cardiology & Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Fortis+Malar+Hospital,+Chennai" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Chennai/Fortis-Malar-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="https://www.fortismalar.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general chennai">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">MIOT International</h5>
+            <p class="card-text"><strong>Location:</strong> Chennai</p>
+            <p class="card-text"><strong>Specialization:</strong> Orthopedics & Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/MIOT+International,+Chennai" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Chennai/MIOT-International" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="https://www.miotinternational.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general chennai">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">SIMS Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Chennai</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty & Critical Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/SIMS+Hospital,+Chennai" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Chennai/SIMS-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="https://www.simshospitals.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general chennai">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Gleneagles Global Health City</h5>
+            <p class="card-text"><strong>Location:</strong> Chennai</p>
+            <p class="card-text"><strong>Specialization:</strong> Transplants & Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Gleneagles+Global+Health+City,+Chennai" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Chennai/Gleneagles-Global-Health-City" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="https://www.gleneaglesglobalhospitals.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+<!--coimbatore-->
+<div class="col-md-4 facility hospital general coimbatore">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">PSG Hospitals</h5>
+            <p class="card-text"><strong>Location:</strong> Coimbatore</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty & Medical Research</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/PSG+Hospitals,+Coimbatore" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Coimbatore/PSG-Hospitals" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="https://www.psghospitals.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general coimbatore">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Ganga Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Coimbatore</p>
+            <p class="card-text"><strong>Specialization:</strong> Orthopedics & Plastic Surgery</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Ganga+Hospital,+Coimbatore" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Coimbatore/Ganga-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="https://www.gangahospital.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general coimbatore">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">KMCH (Kovai Medical Center & Hospital)</h5>
+            <p class="card-text"><strong>Location:</strong> Coimbatore</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty & Critical Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/KMCH,+Coimbatore" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Coimbatore/KMCH" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="https://www.kmchhospitals.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general coimbatore">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Sri Ramakrishna Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Coimbatore</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty & Advanced Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Sri+Ramakrishna+Hospital,+Coimbatore" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Coimbatore/Sri-Ramakrishna-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="https://www.sriramakrishnahospital.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general coimbatore">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Royal Care Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Coimbatore</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty & Emergency Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Royal+Care+Hospital,+Coimbatore" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Coimbatore/Royal-Care-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="https://www.royalcarehospital.in" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+<!--cuddalore-->
+<div class="col-md-4 facility hospital general cuddalore">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Kaveri Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Cuddalore</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Kaveri+Hospital,+Cuddalore" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.kaverihospital.com" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.kaverihospital.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general cuddalore">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Meenakshi Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Cuddalore</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Meenakshi+Hospital,+Cuddalore" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.meenakshihospital.com" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.meenakshihospital.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general cuddalore">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Kamakshi Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Cuddalore</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Kamakshi+Hospital,+Cuddalore" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.kamakshihospital.com" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.kamakshihospital.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general cuddalore">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Sree Ayyappa Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Cuddalore</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Sree+Ayyappa+Hospital,+Cuddalore" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.sreeayyappahospital.com" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.sreeayyappahospital.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general cuddalore">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Vivekananda Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Cuddalore</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Vivekananda+Hospital,+Cuddalore" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.vivekanandahospital.com" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.vivekanandahospital.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+<!--dharmapuri-->
+<div class="col-md-4 facility hospital general dharmapuri">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Vijay Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Dharmapuri</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Vijay+Hospital,+Dharmapuri" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.vijayhospital.com" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.vijayhospital.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general dharmapuri">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Bharath Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Dharmapuri</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Bharath+Hospital,+Dharmapuri" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.bharathhospital.com" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.bharathhospital.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general dharmapuri">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Sakthi Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Dharmapuri</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Sakthi+Hospital,+Dharmapuri" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.sakthihospital.com" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.sakthihospital.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general dharmapuri">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Sri Ram Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Dharmapuri</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Sri+Ram+Hospital,+Dharmapuri" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.sriramhospital.com" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.sriramhospital.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general dharmapuri">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Annai Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Dharmapuri</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Annai+Hospital,+Dharmapuri" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.annaihospital.com" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.annaihospital.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+<!--dindigul-->
+<div class="col-md-4 facility hospital general dindigul">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Gopalakrishnan Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Dindigul</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Gopalakrishnan+Hospital,+Dindigul" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.gopalakrishnanhospital.com" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.gopalakrishnanhospital.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general dindigul">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Dindigul Medical College Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Dindigul</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Dindigul+Medical+College+Hospital" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.dindigulmedicalcollege.com" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.dindigulmedicalcollege.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general dindigul">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Sri Ram Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Dindigul</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Sri+Ram+Hospital,+Dindigul" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.sriramhospital.com" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.sriramhospital.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general dindigul">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Siva Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Dindigul</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Siva+Hospital,+Dindigul" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.sivahospital.com" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.sivahospital.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general dindigul">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Vivekanandha Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Dindigul</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Vivekanandha+Hospital,+Dindigul" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.vivekanandhahospital.com" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.vivekanandhahospital.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+<!--erode-->
+<div class="col-md-4 facility hospital general erode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Kavitha Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Erode</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Kavitha+Hospital,+Erode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.kavithahospital.com" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.kavithahospital.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general erode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Gandhi Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Erode</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Gandhi+Hospital,+Erode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.gandhihospital.com" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.gandhihospital.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general erode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Mahalakshmi Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Erode</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Mahalakshmi+Hospital,+Erode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.mahalakshmihospital.com" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.mahalakshmihospital.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general erode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Sri Venkateswara Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Erode</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Sri+Venkateswara+Hospital,+Erode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.srivenkateswarahospital.com" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.srivenkateswarahospital.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general erode">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Apollo Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Erode</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Apollo+Hospital,+Erode" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.apollohospitals.com" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.apollohospitals.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+<!--kanchipuram-->
+<div class="col-md-4 facility hospital general kanchipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Sri Ramachandra Medical Centre</h5>
+            <p class="card-text"><strong>Location:</strong> Kanchipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Sri+Ramachandra+Medical+Centre,+Kanchipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.sriramachandramedicalcentre.com" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.sriramachandramedicalcentre.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general kanchipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Sankara Nethralaya</h5>
+            <p class="card-text"><strong>Location:</strong> Kanchipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> Eye Care</p>
+            <p class="card-text"><strong>Timings:</strong> 9 AM - 5 PM</p>
+            <a href="https://www.google.com/maps/search/Sankara+Nethralaya,+Kanchipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.sankaranethralaya.org" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.sankaranethralaya.org" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general kanchipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Kanchi Kamakoti Childs Trust Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Kanchipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> Pediatric Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Kanchi+Kamakoti+Childs+Trust+Hospital,+Kanchipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.kanchikamakotichildtrust.com" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.kanchikamakotichildtrust.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general kanchipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Meenakshi Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Kanchipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Meenakshi+Hospital,+Kanchipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.meenakshihospital.in" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.meenakshihospital.in" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general kanchipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Sri Narayani Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Kanchipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Sri+Narayani+Hospital,+Kanchipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.srinarayanihospital.com" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.srinarayanihospital.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+<!--kanyakumari-->
+<div class="col-md-4 facility hospital general kanyakumari">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">M.S. Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Kanyakumari</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/M.S.+Hospital,+Kanyakumari" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.mshospital.in" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.mshospital.in" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general kanyakumari">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Kanyakumari Medical College Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Kanyakumari</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Kanyakumari+Medical+College+Hospital" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.kmc.edu.in" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.kmc.edu.in" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general kanyakumari">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Sree Gokulam Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Kanyakumari</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Sree+Gokulam+Hospital,+Kanyakumari" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.sreegokulamhospital.com" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.sreegokulamhospital.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general kanyakumari">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Anugraha Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Kanyakumari</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Anugraha+Hospital,+Kanyakumari" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.anugrahahospital.com" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.anugrahahospital.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general kanyakumari">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Holy Cross Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Kanyakumari</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Holy+Cross+Hospital,+Kanyakumari" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.holycrosshospital.in" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.holycrosshospital.in" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+<!--karur-->
+<div class="col-md-4 facility hospital general karur">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Karur Medical College Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Karur</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Karur+Medical+College+Hospital" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.karurmedicalcollege.com" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.karurmedicalcollege.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general karur">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Venkateswara Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Karur</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Venkateswara+Hospital,+Karur" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.venkateswarahospitalkarur.com" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.venkateswarahospitalkarur.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general karur">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Saraswathi Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Karur</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Saraswathi+Hospital,+Karur" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.saraswathihospitalkarur.com" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.saraswathihospitalkarur.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general karur">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">KVM Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Karur</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/KVM+Hospital,+Karur" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.kvmhospital.com" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.kvmhospital.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 facility hospital general karur">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Sri Ramakrishna Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Karur</p>
+            <p class="card-text"><strong>Specialization:</strong> Multi-Specialty</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps/search/Sri+Ramakrishna+Hospital,+Karur" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.sriramakrishnahospitalkarur.com" target="_blank" class="btn btn-appointment">Visit Website</a>
+            <a href="http://www.sriramakrishnahospitalkarur.com" target="_blank" class="btn btn-website">Official Website</a>
+        </div>
+    </div>
+</div>
+<!---->
  <!-- Rasipural clinic and hopital start-->
  <div class="col-md-4 facility hospital general namakkal">
     <div class="card">
@@ -1901,8 +2723,9 @@
                 <label for="feedbackMessage" class="form-label">Your Feedback</label>
                 <textarea class="form-control" id="feedbackMessage" rows="3" required></textarea>
             </div>
-            <button type="submit" class="btn btn-success">Submit Feedback</button>
+            <button type="submit" class="btn btn-success mb-2">Submit Feedback</button>
         </form>
+        
         <section id="about" style="background: linear-gradient(135deg, #3a7bd5, #00d2ff); color: white; padding: 50px; text-align: center; border-radius: 10px;">
             <h2>About HealthConnect Lite - Namakkal</h2>
             <p style="max-width: 800px; margin: auto; font-size: 18px; line-height: 1.6;">
@@ -1981,12 +2804,6 @@
             document.body.classList.toggle('dark-mode');
         }
     </script>
-    <script>
-        document.getElementById('doctorlogin').addEventListener('click', function() {
-            window.location.href = 'doctor_Signup.html'; // Redirect to login page
-        });
-    </script>
-
 <!-- Your existing HTML structure -->
 ...
 <!-- jQuery (Ensure this is included) -->
