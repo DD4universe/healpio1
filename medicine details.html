@@ -5,27 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>மருந்து தகவல் | Medicine Info</title>
     <style>
-        /* Background Animation */
-        @keyframes gradientAnimation {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #fbc2eb);
-            background-size: 300% 300%;
-            animation: gradientAnimation 8s ease infinite;
-            margin: 0;
-            padding: 20px;
-            text-align: center;
-            transition: background 0.5s, color 0.5s;
-        }
-
-        .dark-mode {
-            background: #222;
-            color: white;
+            background-color: #f4f4f4;
+            margin: 20px;
         }
 
         .container {
@@ -34,31 +17,22 @@
             width: 50%;
             margin: auto;
             border-radius: 10px;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
-            transition: 0.3s;
-        }
-
-        .dark-mode .container {
-            background: #333;
-            color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
 
         h1 {
             color: #333;
             text-align: left;
             margin-left: 10px;
-            font-size: 24px;
-            font-weight: bold;
         }
 
         .dashboard {
             margin-bottom: 20px;
+            text-align: center;
         }
 
         label {
             font-weight: bold;
-            font-size: 16px;
-            color: #444;
         }
 
         input, button {
@@ -68,8 +42,6 @@
             max-width: 300px;
             border-radius: 5px;
             border: 1px solid #ccc;
-            font-size: 16px;
-            transition: 0.3s;
         }
 
         button {
@@ -77,94 +49,696 @@
             color: white;
             border: none;
             cursor: pointer;
-            font-weight: bold;
         }
 
         button:hover {
             background-color: #218838;
         }
 
-        .add-btn {
-            background-color: #007bff;
-        }
-
-        .add-btn:hover {
-            background-color: #0056b3;
+        #result, #additionalTables {
+            margin-top: 20px;
+            text-align: left;
         }
 
         .medicine-card {
-            background: rgba(255, 255, 255, 0.9);
+            background: #ffffff;
             padding: 15px;
             margin: 10px auto;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
             width: 80%;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .medicine-card:hover {
-            transform: scale(1.05);
         }
 
         img {
             width: 150px;
             height: 150px;
             object-fit: cover;
-            border-radius: 10px;
-        }
-
-        .dark-mode-btn {
-            background-color: #333;
-            color: white;
-        }
-
-        .voice-search {
-            background-color: #f39c12;
-            margin-left: 10px;
-        }
-
-        .voice-search:hover {
-            background-color: #d68910;
         }
     </style>
 </head>
 <body>
-    <button class="dark-mode-btn" onclick="toggleDarkMode()">Dark Mode</button>
-
     <div class="container">
         <h1>Welcome! | வரவேற்கிறோம்!</h1>
-        <div id="medicineContainer">
-            <div class="medicine-block">
-                <label>Medicine Name | மருந்தின் பெயர்:</label>
-                <input type="text" class="medicine-input" list="medicine-list" placeholder="Search Medicine... | மருந்து தேடு..." oninput="searchMedicine(this)">
-                <datalist id="medicine-list"></datalist>
-                <button class="voice-search" onclick="startVoiceSearch(this)">🎙 Voice Search</button>
-                <button onclick="showDetails(this)">Search | தேடுக</button>
-            </div>
+        <div class="dashboard">
+            <label for="medicine">Medicine Name | மருந்தின் பெயர்:</label>
+            <input type="text" id="medicine" list="medicine-list" placeholder="Search Medicine... | மருந்து தேடு..." oninput="searchMedicine()">
+            <datalist id="medicine-list"></datalist>
+            
+            <button onclick="showDetails()">Search | தேடுக</button>
         </div>
 
-        <button class="add-btn" onclick="addMedicineInput()">Add More Tablets | மேலும் மருந்துகள் சேர்க்க</button>
+        <div id="result"></div>
+
+        <button onclick="addTable()">Add More Tablets | மேலும் மருந்துகள் சேர்க்க</button>
+
+        <div id="additionalTables"></div>
     </div>
 
     <script>
         const medicines = {
             "Paracetamol | பாராசிடமால்": {
-                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Paracetamol-skeletal.svg/200px-Paracetamol-skeletal.svg.png",
-                advantages: "Reduces fever and pain | காய்ச்சல் மற்றும் வலியை குறைக்கிறது",
-                disadvantages: "Liver damage in high doses | அதிக அளவில் பயனுபடுத்தினால் கல்லீரல் சேதம்",
-                warning: "Not for children under 6 years | 6 வயதிற்கும் குறைந்த குழந்தைகளுக்கு பொருந்தாது"
-            },
-            "Ibuprofen | இபூபுரோபன்": {
-                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Ibuprofen.svg/200px-Ibuprofen.svg.png",
-                advantages: "Reduces pain and inflammation | வலி மற்றும் அழற்சியைக் குறைக்கிறது",
-                disadvantages: "May cause stomach issues | வயிற்று பிரச்சினைகள் ஏற்படுத்தலாம்",
-                warning: "Avoid in kidney disease and children under 12 | சிறுநீரக நோயாளிகளுக்கும் 12 வயதிற்குட்பட்டவர்களுக்கும் தவிர்க்கவும்"
-            }
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Paracetamol-skeletal.svg/200px-Paracetamol-skeletal.svg.png",
+    "advantages": "Reduces fever and pain | காய்ச்சல் மற்றும் வலியை குறைக்கிறது",
+    "disadvantages": "Liver damage in high doses | அதிக அளவில் பயனுபடுத்தினால் கல்லீரல் சேதம்",
+    "warning": "Not for children under 6 years | 6 வயதிற்கும் குறைந்த குழந்தைகளுக்கு பொருந்தாது"
+},
+
+"Ibuprofen | இபூபுரோபன்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Ibuprofen.svg/200px-Ibuprofen.svg.png",
+    "advantages": "Reduces pain and inflammation | வலி மற்றும் அழற்சியைக் குறைக்கிறது",
+    "disadvantages": "May cause stomach issues | வயிற்று பிரச்சினைகள் ஏற்படுத்தலாம்",
+    "warning": "Avoid in kidney disease and children under 12 | சிறுநீரக நோயாளிகளுக்கும் 12 வயதிற்குட்பட்டவர்களுக்கும் தவிர்க்கவும்"
+},
+
+"Aspirin | அஸ்பிரின்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Aspirin_%28acetylsalicylic_acid%29.svg/200px-Aspirin_%28acetylsalicylic_acid%29.svg.png",
+    "advantages": "Used for pain relief, fever reduction, and heart attack prevention | வலி நிவாரணம், காய்ச்சல் குறைப்பு மற்றும் இதயக்கட்டுப்பாட்டைத் தடுக்கும்",
+    "disadvantages": "May cause stomach ulcers, bleeding, and ringing in the ears | வயிற்று புண், இரத்தக்கசிவு மற்றும் காதில் இசை ஒலி போன்ற உணர்வு ஏற்படலாம்",
+    "warning": "Not for children with viral infections (risk of Reye’s syndrome) | வைரஸ் தொற்று உள்ள குழந்தைகளுக்கு பொருந்தாது (ரெய்ஸ் நோய் அபாயம்)"
+},
+
+"Diclofenac | டைக்கிளோஃபெனாக்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Diclofenac.svg/200px-Diclofenac.svg.png",
+    "advantages": "Used to reduce pain, inflammation, and swelling | வலி, அழற்சி மற்றும் வீக்கம் குறைக்க பயன்படுகிறது",
+    "disadvantages": "May cause stomach ulcers, heartburn, and kidney issues | வயிற்று புண், முலைக்கட்டிப்பு மற்றும் சிறுநீரகப் பிரச்சினைகள் ஏற்படலாம்",
+    "warning": "Avoid in heart disease, kidney issues, and long-term use | இதயநோய், சிறுநீரக பிரச்சினைகள் உள்ளவர்களும் நீண்ட கால பயன்பாட்டும் தவிர்க்கவும்"
+},
+
+"Naproxen | நாப்ரோக்ஸென்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Naproxen.svg/200px-Naproxen.svg.png",
+    "advantages": "Used to relieve pain, inflammation, and stiffness | வலி, அழற்சி மற்றும் திடமான உணர்வை குறைக்க பயன்படுகிறது",
+    "disadvantages": "May cause stomach ulcers, heartburn, and dizziness | வயிற்று புண், முலைக்கட்டிப்பு மற்றும் மயக்கம் ஏற்படலாம்",
+    "warning": "Avoid in heart disease, kidney issues, and long-term use | இதயநோய், சிறுநீரக பிரச்சினைகள் உள்ளவர்களும் நீண்ட கால பயன்பாட்டும் தவிர்க்கவும்"
+},
+
+"Ketorolac | கேட்டோரோலாக்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Ketorolac.svg/200px-Ketorolac.svg.png",
+    "advantages": "Used for short-term relief of moderate to severe pain | மிதமானது முதல் கடுமையான வலிக்கு குறுகிய கால நிவாரணமாக பயன்படுகிறது",
+    "disadvantages": "May cause stomach ulcers, kidney issues, and dizziness | வயிற்று புண், சிறுநீரகப் பிரச்சினைகள் மற்றும் மயக்கம் ஏற்படலாம்",
+    "warning": "Not for long-term use; avoid in kidney disease and ulcers | நீண்ட கால பயன்பாட்டிற்கு பொருந்தாது; சிறுநீரக நோய் மற்றும் புண்கள் உள்ளவர்களுக்கு தவிர்க்கவும்"
+},
+
+"Tramadol | ட்ராமடோல்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Tramadol.svg/200px-Tramadol.svg.png",
+    "advantages": "Used to treat moderate to severe pain | மிதமானது முதல் கடுமையான வலியை சிகிச்சையளிக்க பயன்படுகிறது",
+    "disadvantages": "May cause dizziness, nausea, and dependency | மயக்கம், வாந்தி உணர்வு மற்றும் அடிமை உணர்வு ஏற்படலாம்",
+    "warning": "Avoid alcohol and do not use in uncontrolled epilepsy | மது பருகுவது தவிர்க்கவும், கட்டுப்பாடற்ற மின்சாதம் உள்ளவர்களுக்கு பொருந்தாது"
+},
+
+"Mefenamic Acid | மெஃபினாமிக் ஆசிட்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Mefenamic_acid.svg/200px-Mefenamic_acid.svg.png",
+    "advantages": "Used to treat menstrual pain and inflammation | மாதவிடாய் வலி மற்றும் அழற்சிக்கு பயன்படுகிறது",
+    "disadvantages": "May cause stomach pain, nausea, and heartburn | வயிற்று வலி, வாந்தி உணர்வு மற்றும் முலைக்கட்டிப்பு ஏற்படலாம்",
+    "warning": "Avoid in kidney disease and long-term use | சிறுநீரக நோய் உள்ளவர்களும் நீண்ட கால பயன்பாட்டும் தவிர்க்கவும்"
+},
+
+"Celecoxib | செலிகாக்ஸிப்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Celecoxib.svg/200px-Celecoxib.svg.png",
+    "advantages": "Used to treat pain and inflammation in arthritis | தீவிர வாத நோயில் வலி மற்றும் அழற்சியை குறைக்க பயன்படுகிறது",
+    "disadvantages": "May cause stomach issues, dizziness, and increased heart risk | வயிற்று பிரச்சினைகள், மயக்கம் மற்றும் இதய நோய் அபாயம் ஏற்படலாம்",
+    "warning": "Avoid in heart disease and long-term use | இதயநோய் உள்ளவர்களும் நீண்ட கால பயன்பாட்டும் தவிர்க்கவும்"
+},
+
+"Etoricoxib | எட்டோரிகாக்ஸிப்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/Etoricoxib.svg/200px-Etoricoxib.svg.png",
+    "advantages": "Used for arthritis pain and inflammation | வாத நோயால் ஏற்படும் வலி மற்றும் அழற்சிக்கு பயன்படுகிறது",
+    "disadvantages": "May increase blood pressure, cause stomach issues, and dizziness | இரத்த அழுத்தம் அதிகரிக்கலாம், வயிற்று பிரச்சினைகள் மற்றும் மயக்கம் ஏற்படலாம்",
+    "warning": "Avoid in heart disease, high blood pressure, and long-term use | இதயநோய், உயர் இரத்த அழுத்தம் உள்ளவர்களும் நீண்ட கால பயன்பாட்டும் தவிர்க்கவும்"
+},
+    "Dextromethorphan | டெக்ஸ்ட்ரோமெத்தார்பேன்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Dextromethorphan.svg/200px-Dextromethorphan.svg.png",
+    "advantages": "Used as a cough suppressant | இருமலை தடுக்க பயன்படுகிறது",
+    "disadvantages": "May cause drowsiness, dizziness, and nausea | தூக்கி, மயக்கம், மற்றும் வாந்தி உணர்வு ஏற்படலாம்",
+    "warning": "Avoid in excessive doses to prevent toxicity | அதிக அளவில் எடுத்துக் கொள்வதை தவிர்க்கவும்"
+},
+
+"Guaifenesin | குயாஃபெனெசின்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Guaifenesin.svg/200px-Guaifenesin.svg.png",
+    "advantages": "Used to loosen mucus and clear congestion | மெழுகு கழிவை மென்மையாக்கி இருமலை துடைக்க உதவுகிறது",
+    "disadvantages": "May cause nausea, vomiting, and dizziness | வாந்தி, வாந்தி உணர்வு, மற்றும் மயக்கம் ஏற்படலாம்",
+    "warning": "Drink plenty of fluids for better effectiveness | சிறந்த செயல்பாட்டிற்கு அதிகமாக தண்ணீர் குடிக்கவும்"
+},
+
+"Bromhexine | ப்ரோம்‌ஹெக்சின்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Bromhexine.svg/200px-Bromhexine.svg.png",
+    "advantages": "Used to break down thick mucus and ease breathing | அடர்ந்த மெழுகை தளர்த்தி சுவாசத்தை எளிதாக்க உதவுகிறது",
+    "disadvantages": "May cause nausea, diarrhea, and stomach discomfort | வாந்தி, வயிற்றுப்போக்கு, மற்றும் வயிற்று ஏறல் ஏற்படலாம்",
+    "warning": "Avoid in gastric ulcers and severe respiratory conditions | வயிற்று புண் மற்றும் கடுமையான சுவாசநிலை உள்ளவர்களுக்கு தவிர்க்கவும்"
+},
+
+"Phenylephrine | பைனிலெஃப்ரின்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Phenylephrine.svg/200px-Phenylephrine.svg.png",
+    "advantages": "Used as a nasal decongestant | மூக்கு அடைப்பை குறைக்க பயன்படுகிறது",
+    "disadvantages": "May cause increased blood pressure and dizziness | இரத்த அழுத்தம் அதிகரிக்கலாம் மற்றும் மயக்கம் ஏற்படலாம்",
+    "warning": "Avoid in high blood pressure and heart disease | உயர் இரத்த அழுத்தம் மற்றும் இதய நோயுள்ளவர்கள் தவிர்க்கவும்"
+},
+
+"Pseudoephedrine | சூடோஎபிட்ரின்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Pseudoephedrine.svg/200px-Pseudoephedrine.svg.png",
+    "advantages": "Used to relieve nasal congestion | மூக்கு அடைப்பை குறைக்க பயன்படுகிறது",
+    "disadvantages": "May cause insomnia, nervousness, and high blood pressure | தூக்கமின்மை, பதற்றம், மற்றும் உயர் இரத்த அழுத்தம் ஏற்படலாம்",
+    "warning": "Avoid in heart disease and severe hypertension | இதயநோய் மற்றும் கடுமையான உயர் இரத்த அழுத்தம் உள்ளவர்கள் தவிர்க்கவும்"
+},
+
+"Levocetirizine | லெவோசெடிரிசின்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Levocetirizine.svg/200px-Levocetirizine.svg.png",
+    "advantages": "Used for allergies and hay fever | ஒவ்வாமை மற்றும் மூச்சுத் தடுப்புக்கு பயன்படுகிறது",
+    "disadvantages": "May cause drowsiness and dry mouth | தூக்கி மற்றும் வாய் உலர்தல் ஏற்படலாம்",
+    "warning": "Avoid alcohol while using this medication | இந்த மருந்தைப் பயன்படுத்தும் போது மதுபானம் தவிர்க்கவும்"
+},
+
+"Cetirizine | செடிரிசின்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Cetirizine.svg/200px-Cetirizine.svg.png",
+    "advantages": "Used to treat allergies and itching | ஒவ்வாமை மற்றும் தேமலைகளுக்குப் பயன்படுகிறது",
+    "disadvantages": "May cause drowsiness, headache, and dry mouth | தூக்கி, தலைவலி, மற்றும் வாய் உலர்தல் ஏற்படலாம்",
+    "warning": "Avoid in severe kidney disease | கடுமையான சிறுநீரக நோயுள்ளவர்கள் தவிர்க்கவும்"
+},
+
+"Loratadine | லோரடாடின்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Loratadine.svg/200px-Loratadine.svg.png",
+    "advantages": "Used to relieve allergy symptoms | ஒவ்வாமை அறிகுறிகளை குறைக்க பயன்படுகிறது",
+    "disadvantages": "May cause headache, fatigue, and dry mouth | தலைவலி, உடல் சோர்வு, மற்றும் வாய் உலர்தல் ஏற்படலாம்",
+    "warning": "Use with caution in liver disease | கல்லீரல் நோய் உள்ளவர்கள் கவனமாக பயன்படுத்தவும்"
+},
+
+"Fexofenadine | ஃபெக்சோஃபெனடின்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Fexofenadine.svg/200px-Fexofenadine.svg.png",
+    "advantages": "Used for allergy relief with minimal drowsiness | தூக்கத்தை குறைவாக ஏற்படுத்தும் ஒவ்வாமை எதிர்ப்பு மருந்து",
+    "disadvantages": "May cause headache and dizziness | தலைவலி மற்றும் மயக்கம் ஏற்படலாம்",
+    "warning": "Avoid taking with fruit juices (reduces absorption) | பழச்சாறுடன் சேர்த்து உட்கொள்ள வேண்டாம் (சேர்க்கை குறைகிறது)"
+},
+
+"Chlorpheniramine | க்ளோர்ஃபெனிராமைன்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Chlorpheniramine.svg/200px-Chlorpheniramine.svg.png",
+    "advantages": "Used to treat allergies, colds, and hay fever | ஒவ்வாமை, சளி மற்றும் பூப்பித்தல் சிகிச்சைக்குப் பயன்படுகிறது",
+    "disadvantages": "May cause significant drowsiness and dry mouth | அதிக தூக்கி மற்றும் வாய் உலர்தல் ஏற்படலாம்",
+    "warning": "Avoid driving or operating machinery after use | மருந்து எடுத்த பிறகு வாகனம் ஓட்டுவதையும் இயந்திரங்கள் இயக்குவதையும் தவிர்க்கவும்"
+},
+"Omeprazole | ஓமெப்ராசோல்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Omeprazole2DACS.svg/200px-Omeprazole2DACS.svg.png",
+    "advantages": "Used to reduce stomach acid and treat ulcers | வயிற்று அமிலத்தைக் குறைக்கவும், புண்களை சிகிச்சை செய்யவும் பயன்படுகிறது",
+    "disadvantages": "May cause headache, nausea, and diarrhea | தலைவலி, வாந்தி உணர்வு, மற்றும் வயிற்றுப்போக்கு ஏற்படலாம்",
+    "warning": "Long-term use may cause vitamin B12 deficiency | நீண்ட கால பயன்பாடு வைட்டமின் B12 குறைவை ஏற்படுத்தலாம்"
+},
+
+"Pantoprazole | பான்டோப்ராசோல்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Pantoprazole_structure.svg/200px-Pantoprazole_structure.svg.png",
+    "advantages": "Used for acid reflux and stomach ulcers | அமில ஒழுக்கம் மற்றும் வயிற்று புண்களுக்கு பயன்படுகிறது",
+    "disadvantages": "May cause dizziness, headache, and stomach pain | மயக்கம், தலைவலி, மற்றும் வயிற்று வலி ஏற்படலாம்",
+    "warning": "Avoid long-term use without medical advice | மருத்துவ ஆலோசனை இல்லாமல் நீண்ட காலம் பயன்படுத்த வேண்டாம்"
+},
+
+"Ranitidine | ரேனிடிடின்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Ranitidine.svg/200px-Ranitidine.svg.png",
+    "advantages": "Used to reduce stomach acid and treat ulcers | வயிற்று அமிலத்தைக் குறைக்கவும், புண்களை சிகிச்சை செய்யவும் பயன்படுகிறது",
+    "disadvantages": "May cause dizziness and changes in liver enzymes | மயக்கம் மற்றும் கல்லீரல் எஞ்சைம்கள் மாறலாம்",
+    "warning": "Withdrawn in many countries due to safety concerns | பல நாடுகளில் பாதுகாப்பு காரணமாக நீக்கப்பட்டது"
+},
+
+"Esomeprazole | எசோமெப்ராசோல்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Esomeprazole.svg/200px-Esomeprazole.svg.png",
+    "advantages": "Used for acid reflux and heartburn | அமில ஒழுக்கம் மற்றும் முலைக்கட்டிப்பு குறைக்க பயன்படுகிறது",
+    "disadvantages": "May cause headache, nausea, and vitamin B12 deficiency | தலைவலி, வாந்தி உணர்வு, மற்றும் வைட்டமின் B12 குறைபாடு ஏற்படலாம்",
+    "warning": "Avoid long-term use unless necessary | தேவையின்றி நீண்ட காலம் பயன்படுத்த வேண்டாம்"
+},
+
+"Domperidone | டோம்பெரிடோன்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Domperidone.svg/200px-Domperidone.svg.png",
+    "advantages": "Used to relieve nausea, vomiting, and bloating | வாந்தி உணர்வு, வாந்தி மற்றும் வயிற்று வீக்கத்தை குறைக்க பயன்படுகிறது",
+    "disadvantages": "May cause dry mouth and dizziness | வாய் உலர்தல் மற்றும் மயக்கம் ஏற்படலாம்",
+    "warning": "Avoid in heart disease and long-term use | இதயநோய் உள்ளவர்கள் மற்றும் நீண்ட கால பயன்பாட்டில் தவிர்க்கவும்"
+},
+
+"Metoclopramide | மேடோக்ளோப்ரமைடு": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Metoclopramide.svg/200px-Metoclopramide.svg.png",
+    "advantages": "Used for nausea, vomiting, and delayed stomach emptying | வாந்தி உணர்வு, வாந்தி மற்றும் சீரான ஜீரணத்திற்கு பயன்படுகிறது",
+    "disadvantages": "May cause drowsiness, restlessness, and muscle stiffness | தூக்கி, அமைதியின்மை, மற்றும் தசை பிடிப்பு ஏற்படலாம்",
+    "warning": "Avoid in Parkinson’s disease and long-term use | பார்கின்சன் நோய் உள்ளவர்கள் மற்றும் நீண்ட காலம் பயன்படுத்த வேண்டாம்"
+},
+
+"Ondansetron | ஒன்டான்செட்ரான்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Ondansetron.svg/200px-Ondansetron.svg.png",
+    "advantages": "Used to prevent nausea and vomiting | வாந்தி உணர்வு மற்றும் வாந்தியை தடுக்கும்",
+    "disadvantages": "May cause headache, constipation, and dizziness | தலைவலி, மலச்சிக்கல் மற்றும் மயக்கம் ஏற்படலாம்",
+    "warning": "Use with caution in heart patients | இதய நோயாளிகள் கவனமாக பயன்படுத்த வேண்டும்"
+},
+
+"Simethicone | சைமேத்திகோன்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Simethicone.svg/200px-Simethicone.svg.png",
+    "advantages": "Used to relieve gas and bloating | வாயுவை வெளியேற்ற மற்றும் வயிற்று வீக்கத்தைக் குறைக்க பயன்படுகிறது",
+    "disadvantages": "Generally well tolerated with minimal side effects | பொதுவாக பக்க விளைவுகள் குறைவாகவே காணப்படும்",
+    "warning": "Safe for most people but consult a doctor for prolonged use | பெரும்பாலும் பாதுகாப்பானது, ஆனால் நீண்ட காலம் பயன்படுத்துவதற்கு முன் மருத்துவரை அணுகவும்"
+},
+
+"Loperamide | லோபெரமைடு": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Loperamide.svg/200px-Loperamide.svg.png",
+    "advantages": "Used to treat diarrhea by slowing bowel movement | மலச்சிக்கலை குறைக்கும் மூலம் வயிற்றுப் போக்கை கட்டுப்படுத்த உதவுகிறது",
+    "disadvantages": "May cause constipation, dizziness, and nausea | மலச்சிக்கல், மயக்கம் மற்றும் வாந்தி உணர்வு ஏற்படலாம்",
+    "warning": "Avoid in severe infections and long-term use | கடுமையான தொற்றுநோய்களில் மற்றும் நீண்ட காலம் பயன்படுத்த வேண்டாம்"
+},
+
+"Bismuth Subsalicylate | பிஸ்மத் சப்சாலிசைலைட்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Bismuth_subsalicylate_structure.svg/200px-Bismuth_subsalicylate_structure.svg.png",
+    "advantages": "Used to treat diarrhea, indigestion, and nausea | வயிற்றுப்போக்கு, செரிமான கோளாறு மற்றும் வாந்தி உணர்வுக்கு பயன்படுகிறது",
+    "disadvantages": "May cause black stools and darkened tongue | கருப்பு நிற மலச்சேறும், நாக்கில் கருப்பு நிறம் ஏற்படலாம்",
+    "warning": "Not for children with viral infections (risk of Reye’s syndrome) | வைரஸ் தொற்று உள்ள குழந்தைகளுக்கு பொருந்தாது (ரெய்ஸ் நோய் அபாயம்)"
+},
+"Amoxicillin | அமோக்சிசில்லின்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Amoxicillin.svg/200px-Amoxicillin.svg.png",
+    "advantages": "Broad-spectrum antibiotic used for bacterial infections | பல்வேறு பாக்டீரியா தொற்றுகளுக்காக பயன்படுத்தப்படும் பரந்த-ஸ்பெக்ட்ரம் ஆண்டிபயாடிக்",
+    "disadvantages": "May cause diarrhea, nausea, and allergic reactions | வயிற்றுப்போக்கு, வாந்தி உணர்வு, மற்றும் ஒவ்வாமை ஏற்படலாம்",
+    "warning": "Avoid in penicillin allergy | பெனிசில்லின் ஒவ்வாமை உள்ளவர்கள் தவிர்க்க வேண்டும்"
+},
+
+"Azithromycin | அசித்ரோமைசின்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Azithromycin.svg/200px-Azithromycin.svg.png",
+    "advantages": "Used for respiratory, skin, and sexually transmitted infections | மூச்சுக்குழாய், தோல், மற்றும் பாலியல் நோய்களுக்கு பயன்படுகிறது",
+    "disadvantages": "May cause nausea, diarrhea, and stomach pain | வாந்தி உணர்வு, வயிற்றுப்போக்கு, மற்றும் வயிற்று வலி ஏற்படலாம்",
+    "warning": "Use with caution in liver disease and heart rhythm problems | கல்லீரல் நோய் மற்றும் இதய ரிதம் கோளாறுகளுடன் கவனமாக பயன்படுத்தவும்"
+},
+
+"Ciprofloxacin | சிப்ரோஃப்ளாக்ஸசின்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Ciprofloxacin.svg/200px-Ciprofloxacin.svg.png",
+    "advantages": "Used for urinary, respiratory, and gastrointestinal infections | சிறுநீர், மூச்சுக்குழாய், மற்றும் குடல் தொற்றுக்கு பயன்படுகிறது",
+    "disadvantages": "May cause tendon damage, dizziness, and nausea | தசை இணைப்பு சேதம், மயக்கம், மற்றும் வாந்தி உணர்வு ஏற்படலாம்",
+    "warning": "Avoid in children and during pregnancy | குழந்தைகளுக்கும், கர்ப்பிணிகளுக்கும் தவிர்க்கவும்"
+},
+
+"Doxycycline | டாக்ஸிசைக்க்ளின்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Doxycycline.svg/200px-Doxycycline.svg.png",
+    "advantages": "Used for bacterial infections, acne, and malaria prevention | பாக்டீரியா தொற்று, முகப்பரு, மற்றும் மலேரியா தடுப்புக்கு பயன்படுகிறது",
+    "disadvantages": "May cause sun sensitivity, nausea, and stomach upset | வெயில் ஒளி உணர்திறன், வாந்தி உணர்வு, மற்றும் வயிற்றுப்போக்கு ஏற்படலாம்",
+    "warning": "Avoid in pregnancy and children under 8 years | கர்ப்பிணிகள் மற்றும் 8 வயதிற்குட்பட்ட குழந்தைகள் தவிர்க்க வேண்டும்"
+},
+
+"Clarithromycin | கிளாரித்ரோமைசின்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Clarithromycin.svg/200px-Clarithromycin.svg.png",
+    "advantages": "Used for respiratory and skin infections | மூச்சுக்குழாய் மற்றும் தோல் தொற்றுகளுக்கு பயன்படுகிறது",
+    "disadvantages": "May cause stomach pain, nausea, and altered taste | வயிற்று வலி, வாந்தி உணர்வு, மற்றும் ருசி மாற்றம் ஏற்படலாம்",
+    "warning": "Use with caution in liver and kidney disease | கல்லீரல் மற்றும் சிறுநீரக நோயாளிகள் கவனமாக பயன்படுத்த வேண்டும்"
+},
+
+"Cefixime | செபிக்சிம்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Cefixime.svg/200px-Cefixime.svg.png",
+    "advantages": "Used for urinary and respiratory infections | சிறுநீர் மற்றும் மூச்சுக்குழாய் தொற்றுகளுக்கு பயன்படுகிறது",
+    "disadvantages": "May cause diarrhea and stomach upset | வயிற்றுப்போக்கு மற்றும் வயிற்று கோளாறு ஏற்படலாம்",
+    "warning": "Use with caution in penicillin allergy | பெனிசில்லின் ஒவ்வாமை உள்ளவர்கள் கவனமாக பயன்படுத்த வேண்டும்"
+},
+
+"Cefuroxime | செஃப்யூரோக்சிம்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Cefuroxime.svg/200px-Cefuroxime.svg.png",
+    "advantages": "Used for respiratory, skin, and urinary infections | மூச்சுக்குழாய், தோல், மற்றும் சிறுநீர் தொற்றுகளுக்கு பயன்படுகிறது",
+    "disadvantages": "May cause diarrhea and nausea | வயிற்றுப்போக்கு மற்றும் வாந்தி உணர்வு ஏற்படலாம்",
+    "warning": "Use with caution in penicillin allergy | பெனிசில்லின் ஒவ்வாமை உள்ளவர்கள் கவனமாக பயன்படுத்த வேண்டும்"
+},
+
+"Metronidazole | மெட்ரோநிடசோல்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Metronidazole.svg/200px-Metronidazole.svg.png",
+    "advantages": "Used for bacterial and parasitic infections | பாக்டீரியா மற்றும் பராசிட்டிக் தொற்றுகளுக்கு பயன்படுகிறது",
+    "disadvantages": "May cause metallic taste, nausea, and dizziness | உலோக ருசி, வாந்தி உணர்வு, மற்றும் மயக்கம் ஏற்படலாம்",
+    "warning": "Avoid alcohol during treatment | சிகிச்சையின் போது மதுபானம் தவிர்க்க வேண்டும்"
+},
+
+"Levofloxacin | லேவோஃப்ளாக்ஸசின்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Levofloxacin.svg/200px-Levofloxacin.svg.png",
+    "advantages": "Used for respiratory, urinary, and skin infections | மூச்சுக்குழாய், சிறுநீர், மற்றும் தோல் தொற்றுகளுக்கு பயன்படுகிறது",
+    "disadvantages": "May cause tendon damage, dizziness, and nausea | தசை இணைப்பு சேதம், மயக்கம், மற்றும் வாந்தி உணர்வு ஏற்படலாம்",
+    "warning": "Avoid in children and during pregnancy | குழந்தைகளுக்கும், கர்ப்பிணிகளுக்கும் தவிர்க்கவும்"
+},
+
+"Nitrofurantoin | நைட்ரோஃப்யூராண்டோயின்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Nitrofurantoin.svg/200px-Nitrofurantoin.svg.png",
+    "advantages": "Used for urinary tract infections (UTIs) | சிறுநீர் தொற்றுகளுக்கு (UTI) பயன்படுகிறது",
+    "disadvantages": "May cause nausea, headache, and lung issues in long-term use | வாந்தி உணர்வு, தலைவலி, மற்றும் நீண்ட கால பயன்பாட்டில் நுரையீரல் பிரச்சினைகள் ஏற்படலாம்",
+    "warning": "Avoid in severe kidney disease | கடுமையான சிறுநீரக நோயுள்ளவர்கள் தவிர்க்க வேண்டும்"
+},
+"Hydroxyzine | ஹைட்ரோக்ஸிசின்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Hydroxyzine_structure.svg/200px-Hydroxyzine_structure.svg.png",
+    "advantages": "Used for allergies, anxiety, and itching | அலர்ஜி, கவலை, மற்றும் தோல் குலிர்ச்சி குறைக்க பயன்படுகிறது",
+    "disadvantages": "May cause drowsiness and dry mouth | தூக்கி மற்றும் வாய் உலர்தல் ஏற்படலாம்",
+    "warning": "Avoid alcohol and use with caution in elderly patients | மதுபானம் தவிர்க்கவும், முதியவர்களுக்கு கவனமாக பயன்படுத்தவும்"
+},
+
+"Diphenhydramine | டைஃபென்ஹைட்ரமின்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Diphenhydramine.svg/200px-Diphenhydramine.svg.png",
+    "advantages": "Used for allergies, insomnia, and motion sickness | அலர்ஜி, தூக்கமின்மை, மற்றும் பயண திசுமிச்சல் குறைக்க பயன்படுகிறது",
+    "disadvantages": "May cause drowsiness, dizziness, and dry mouth | தூக்கி, மயக்கம், மற்றும் வாய் உலர்தல் ஏற்படலாம்",
+    "warning": "Avoid driving after taking this medication | மருந்து எடுத்த பின் வாகனம் ஓட்ட வேண்டாம்"
+},
+
+"Betamethasone | பேடமேதாசோன்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Betamethasone.svg/200px-Betamethasone.svg.png",
+    "advantages": "Used for skin conditions, inflammation, and allergies | தோல் பிரச்சினைகள், அழற்சி, மற்றும் அலர்ஜிக்காக பயன்படுகிறது",
+    "disadvantages": "May cause skin thinning and irritation | தோல் மெல்லியதாகுதல் மற்றும் எரிச்சல் ஏற்படலாம்",
+    "warning": "Avoid prolonged use on the face and sensitive areas | முகம் மற்றும் செருப்பான இடங்களில் நீண்ட காலம் பயன்படுத்த வேண்டாம்"
+},
+
+"Hydrocortisone | ஹைட்ரோகோர்டிசோன்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Hydrocortisone.svg/200px-Hydrocortisone.svg.png",
+    "advantages": "Used for skin inflammation, rashes, and eczema | தோல் அழற்சி, சொறி, மற்றும் எக்சீமா சிகிச்சைக்கு பயன்படுகிறது",
+    "disadvantages": "May cause skin thinning and increased hair growth | தோல் மெல்லியதாகுதல் மற்றும் அதிக முடி வளர்ச்சி ஏற்படலாம்",
+    "warning": "Avoid using for long durations without medical advice | நீண்ட காலம் பயன்படுத்துவதற்கு முன் மருத்துவரை அணுகவும்"
+},
+
+"Clobetasol | கிளோபெடாஸோல்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Clobetasol_Propionate.svg/200px-Clobetasol_Propionate.svg.png",
+    "advantages": "Used for severe skin conditions like psoriasis and eczema | பசுமைச்செம்பு, எக்சீமா போன்ற கடுமையான தோல் பிரச்சினைகளுக்கு பயன்படுகிறது",
+    "disadvantages": "May cause skin thinning and irritation | தோல் மெல்லியதாகுதல் மற்றும் எரிச்சல் ஏற்படலாம்",
+    "warning": "Avoid on face and long-term use | முகத்தில் மற்றும் நீண்ட காலம் பயன்படுத்த வேண்டாம்"
+},
+
+"Mometasone | மோமேடாசோன்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Mometasone_furoate.svg/200px-Mometasone_furoate.svg.png",
+    "advantages": "Used for eczema, allergies, and asthma | எக்சீமா, அலர்ஜி, மற்றும் ஆஸ்துமாவிற்கு பயன்படுகிறது",
+    "disadvantages": "May cause burning sensation and skin irritation | எரிச்சல் உணர்வு மற்றும் தோல் எரிச்சல் ஏற்படலாம்",
+    "warning": "Use as directed by a doctor for short-term relief | சிறிய கால சிகிச்சைக்கு மட்டுமே மருத்துவரின் ஆலோசனையுடன் பயன்படுத்தவும்"
+},
+
+"Calamine Lotion | கலமைன் லோஷன்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Calamine_Lotion.jpg/200px-Calamine_Lotion.jpg",
+    "advantages": "Used for itching, sunburn, and insect bites | தோல் குளிர்ச்சி, வெயில் காயம், மற்றும் பூச்சிக்கடிக்கு பயன்படுகிறது",
+    "disadvantages": "May cause mild dryness and skin irritation | லேசான உலர்ச்சி மற்றும் தோல் எரிச்சல் ஏற்படலாம்",
+    "warning": "For external use only, avoid contact with eyes | வெளிப்புற பயன்பாட்டுக்கு மட்டும், கண்களில் செல்வதை தவிர்க்கவும்"
+    },
+
+    "Terbinafine | டெர்பினாஃபைன்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Terbinafine.svg/200px-Terbinafine.svg.png",
+    "advantages": "Used for fungal infections of the skin and nails | தோல் மற்றும் நகங்களில் பூஞ்சை தொற்றுக்கு பயன்படுகிறது",
+    "disadvantages": "May cause headache, nausea, and liver issues | தலைவலி, வாந்தி உணர்வு, மற்றும் கல்லீரல் பிரச்சினைகள் ஏற்படலாம்",
+    "warning": "Avoid in severe liver disease | கடுமையான கல்லீரல் நோயாளிகள் தவிர்க்க வேண்டும்"
+    },
+
+    "Clotrimazole | கிளோட்ரிமாஸோல்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Clotrimazole.svg/200px-Clotrimazole.svg.png",
+    "advantages": "Used for fungal skin infections like athlete’s foot and ringworm | ஆத்திலீட் ஃபுட், ரிங்க்வோர்ம் போன்ற பூஞ்சை தோல் தொற்றுகளுக்கு பயன்படுகிறது",
+    "disadvantages": "May cause skin irritation and burning sensation | தோல் எரிச்சல் மற்றும் எரியும் உணர்வு ஏற்படலாம்",
+    "warning": "For external use only, avoid open wounds | வெளிப்புற பயன்பாட்டுக்கு மட்டும், திறந்த காயங்களில் பயன்படுத்த வேண்டாம்"
+    },
+
+    "Ketoconazole | கெடோகொனசோல்": {
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Ketoconazole.svg/200px-Ketoconazole.svg.png",
+    "advantages": "Used for fungal infections of the skin, scalp, and nails | தோல், தலைமுடி, மற்றும் நகங்களில் பூஞ்சை தொற்றுக்கு பயன்படுகிறது",
+    "disadvantages": "May cause dryness, itching, and skin irritation | தோல் உலர்ச்சி, அரிப்பு, மற்றும் எரிச்சல் ஏற்படலாம்",
+    "warning": "Avoid long-term use due to liver toxicity risk | நீண்ட காலம் பயன்படுத்துவது கல்லீரல் சேதத்தை ஏற்படுத்தலாம்"
+     },
+
+            "Metformin | மெட்போர்மின்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Metformin2DCSD.svg/200px-Metformin2DCSD.svg.png",
+        "advantages": "Lowers blood sugar and improves insulin sensitivity | இரத்த சர்க்கரை அளவை குறைத்து இன்சுலின் செயல்பாட்டை மேம்படுத்தும்",
+        "disadvantages": "May cause stomach upset and lactic acidosis in rare cases | வயிற்றுப் பொருமல் மற்றும் அபூர்வமாக லாக்டிக் ஆசிடோசிஸ் ஏற்படலாம்",
+        "warning": "Avoid in severe kidney disease | தீவிர சிறுநீரக நோயுள்ளவர்களுக்கு தவிர்க்கவும்"
+    },
+
+    "Glimepiride | கிளிமெப்பிரைடு": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Glimepiride.svg/200px-Glimepiride.svg.png",
+        "advantages": "Helps the pancreas release more insulin to lower blood sugar | கணுக்கால் இன்சுலின் உற்பத்தியை அதிகரித்து சர்க்கரை அளவை கட்டுப்படுத்துகிறது",
+        "disadvantages": "May cause low blood sugar (hypoglycemia) and weight gain | குறைந்த இரத்த சர்க்கரை (ஹைப்போகிளைசீமியா) மற்றும் உடல் எடை அதிகரிப்பு ஏற்படலாம்",
+        "warning": "Caution in elderly and those with liver disease | வயதானவர்கள் மற்றும் கல்லீரல் நோயுள்ளவர்கள் கவனமாக பயன்படுத்த வேண்டும்"
+    },
+
+    "Gliclazide | கிளிகிளாசைடு": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Gliclazide2DACS.svg/200px-Gliclazide2DACS.svg.png",
+        "advantages": "Stimulates insulin release to control blood sugar levels | இன்சுலின் சுரப்பை தூண்டி இரத்த சர்க்கரை அளவை கட்டுப்படுத்துகிறது",
+        "disadvantages": "Can cause hypoglycemia and weight gain | ஹைப்போகிளைசீமியா மற்றும் உடல் எடை அதிகரிக்கும் அபாயம்",
+        "warning": "Not suitable for type 1 diabetes or severe kidney disease | டைப் 1 நீரிழிவு அல்லது தீவிர சிறுநீரக கோளாறு உள்ளவர்கள் பயன்படுத்த கூடாது"
+    },
+
+    "Sitagliptin | சிட்டாக்ளிப்டின்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Sitagliptin_structure.svg/200px-Sitagliptin_structure.svg.png",
+        "advantages": "Increases insulin release and lowers blood sugar | இன்சுலின் சுரப்பை அதிகரித்து இரத்த சர்க்கரை அளவை குறைக்கும்",
+        "disadvantages": "May cause joint pain and pancreatitis | மூட்டு வலி மற்றும் பாங்கிரியாஸின் அழற்சி ஏற்படலாம்",
+        "warning": "Use with caution in kidney disease | சிறுநீரக கோளாறு உள்ளவர்கள் கவனமாக பயன்படுத்த வேண்டும்"
+    },
+
+    "Insulin | இன்சுலின்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/InsulinMonomer2.png/200px-InsulinMonomer2.png",
+        "advantages": "Essential for blood sugar control in diabetes | நீரிழிவை கட்டுப்படுத்த முக்கியமான ஹார்மோன்",
+        "disadvantages": "Can cause hypoglycemia and weight gain | ஹைப்போகிளைசீமியா மற்றும் உடல் எடை அதிகரிக்கும் அபாயம்",
+        "warning": "Requires proper dosing to avoid low blood sugar | குறைந்த இரத்த சர்க்கரை ஏற்படாமல் சரியான அளவீடாகப் பயன்படுத்த வேண்டும்"
+    },
+
+    "Losartan | லோசார்டான்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Losartan.svg/200px-Losartan.svg.png",
+        "advantages": "Lowers blood pressure and protects kidneys | இரத்த அழுத்தத்தை குறைத்து சிறுநீரகங்களை பாதுகாக்கும்",
+        "disadvantages": "May cause dizziness and increased potassium levels | தலைசுற்றல் மற்றும் அதிகமான பொட்டாசியம் அளவு ஏற்படலாம்",
+        "warning": "Avoid in pregnancy | கர்ப்பிணி பெண்கள் தவிர்க்க வேண்டும்"
+    },
+
+    "Amlodipine | அம்லோடிபைன்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Amlodipine2DACS.svg/200px-Amlodipine2DACS.svg.png",
+        "advantages": "Lowers blood pressure and improves heart function | இரத்த அழுத்தத்தை குறைத்து இதய செயல்பாட்டை மேம்படுத்தும்",
+        "disadvantages": "Can cause swelling in legs and dizziness | கால் வீக்கம் மற்றும் தலைசுற்றல் ஏற்படலாம்",
+        "warning": "Caution in liver disease | கல்லீரல் கோளாறு உள்ளவர்கள் கவனமாக பயன்படுத்த வேண்டும்"
+    },
+
+    "Atenolol | அடெனோலோல்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Atenolol.svg/200px-Atenolol.svg.png",
+        "advantages": "Reduces heart rate and blood pressure | இதயத்துடிப்பு மற்றும் இரத்த அழுத்தத்தை குறைக்கும்",
+        "disadvantages": "May cause fatigue and cold extremities | உடல் சோர்வு மற்றும் குளிர்ந்த கைகள்/கால்கள் ஏற்படலாம்",
+        "warning": "Avoid in asthma patients | ஆஸ்த்மா நோயாளிகள் தவிர்க்க வேண்டும்"
+    },
+
+    "Propranolol | பிரோப்ரனோலால்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Propranolol.svg/200px-Propranolol.svg.png",
+        "advantages": "Reduces blood pressure and heart rate | இரத்த அழுத்தம் மற்றும் இதயத்துடிப்பை குறைக்கிறது",
+        "disadvantages": "May cause dizziness and fatigue | தலைச்சுற்றல் மற்றும் சிறிது சோர்வு ஏற்படலாம்",
+        "warning": "Not recommended for asthma patients | ஆஸ்த்மா நோயாளிகளுக்கு பரிந்துரைக்கப்படாது"
+    },
+
+    "Enalapril | எனலாபிரில்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Enalapril.svg/200px-Enalapril.svg.png",
+        "advantages": "Lowers blood pressure and protects heart and kidneys | இரத்த அழுத்தத்தை குறைத்து இதயம் மற்றும் சிறுநீரகங்களை பாதுகாக்கும்",
+        "disadvantages": "May cause cough and high potassium levels | இருமல் மற்றும் அதிகமான பொட்டாசியம் அளவு ஏற்படலாம்",
+        "warning": "Avoid in pregnancy | கர்ப்பிணி பெண்கள் தவிர்க்க வேண்டும்"
+    },
+
+    "Atorvastatin | அடோர்வாஸ்டாட்டின்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Atorvastatin.svg/200px-Atorvastatin.svg.png",
+        "advantages": "Lowers cholesterol and reduces heart disease risk | கொலஸ்ட்ரால் அளவைக் குறைத்து இதய நோய் அபாயத்தைக் குறைக்கும்",
+        "disadvantages": "May cause muscle pain and liver problems | தசை வலி மற்றும் கல்லீரல் பிரச்சினைகள் ஏற்படலாம்",
+        "warning": "Avoid in liver disease | கல்லீரல் கோளாறு உள்ளவர்கள் தவிர்க்க வேண்டும்"
+    },
+
+    "Rosuvastatin | ரோசுவாஸ்டாட்டின்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Rosuvastatin.svg/200px-Rosuvastatin.svg.png",
+        "advantages": "Effectively reduces cholesterol levels | கொலஸ்ட்ராலை குறைக்கும் சக்திவாய்ந்த மருந்து",
+        "disadvantages": "May cause muscle weakness and kidney problems | தசை பலவீனம் மற்றும் சிறுநீரக கோளாறு ஏற்படலாம்",
+        "warning": "Monitor kidney function in long-term use | நீண்டகாலப் பயன்பாட்டில் சிறுநீரக செயல்பாட்டை கண்காணிக்க வேண்டும்"
+    },
+
+    "Simvastatin | சிம்வாஸ்டாட்டின்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Simvastatin.svg/200px-Simvastatin.svg.png",
+        "advantages": "Reduces bad cholesterol (LDL) and triglycerides | மோசமான கொலஸ்ட்ராலை (LDL) மற்றும் டிரிகிளிசரைட்களை குறைக்கும்",
+        "disadvantages": "May cause muscle pain and digestive issues | தசை வலி மற்றும் செரிமான கோளாறுகள் ஏற்படலாம்",
+        "warning": "Avoid grapefruit juice | கிரேப்‌ஃப்ரூட் ஜூஸ் உட்கொள்ள வேண்டாம்"
+    },
+
+    "Clopidogrel | க்ளோபிடோக்ரெல்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Clopidogrel.svg/200px-Clopidogrel.svg.png",
+        "advantages": "Prevents blood clots and reduces heart attack risk | இரத்த உறைவு ஏற்படுவதை தடுக்கிறது மற்றும் இதய நோய்களைத் தடுக்க உதவும்",
+        "disadvantages": "May increase bleeding risk | இரத்தக் கசியும் அபாயம் அதிகரிக்கலாம்",
+        "warning": "Avoid before surgery | அறுவை சிகிச்சைக்கு முன் மருந்து நிறுத்த வேண்டும்"
+    },
+
+    "Aspirin (low dose) | அஸ்பிரின் (குறைந்த அளவு)": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Aspirin_%28tablet%29.svg/200px-Aspirin_%28tablet%29.svg.png",
+        "advantages": "Prevents blood clots and protects the heart | இரத்த உறைவை தடுத்து இதயத்தை பாதுகாக்கும்",
+        "disadvantages": "Can cause stomach irritation and bleeding | வயிற்று பிரச்சினைகள் மற்றும் இரத்தக் கசியல் ஏற்படலாம்",
+        "warning": "Use caution in ulcers and bleeding disorders | காய்ச்சல் மற்றும் இரத்தக்கசிவு பிரச்சனைகள் உள்ளவர்கள் கவனமாக பயன்படுத்த வேண்டும்"
+    },
+
+    "Warfarin | வார்ஃபரின்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Warfarin.svg/200px-Warfarin.svg.png",
+        "advantages": "Prevents blood clots and stroke | இரத்த உறைவை தடுத்து ஸ்ட்ரோக்கை தடுக்கும்",
+        "disadvantages": "Requires regular blood tests and may cause bleeding | இடையீட்டு இரத்தப் பரிசோதனை தேவை மற்றும் இரத்தக்கசிவு அபாயம் உள்ளது",
+        "warning": "Avoid alcohol and certain foods (leafy greens) | மது மற்றும் சில உணவுகளை (கீரைகள்) தவிர்க்கவும்"
+    },
+
+    "Dabigatran | டெபிகாட்ரான்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Dabigatran_structure.svg/200px-Dabigatran_structure.svg.png",
+        "advantages": "Prevents stroke and blood clots | ஸ்ட்ரோக்கை தடுக்கிறது மற்றும் இரத்த உறைவை கட்டுப்படுத்துகிறது",
+        "disadvantages": "May cause stomach pain and bleeding | வயிற்று வலி மற்றும் இரத்தக்கசிவு ஏற்படலாம்",
+        "warning": "Avoid in severe kidney disease | தீவிர சிறுநீரக கோளாறு உள்ளவர்கள் தவிர்க்க வேண்டும்"
+    },
+
+    "Rivaroxaban | ரிவரோசாபன்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Rivaroxaban.svg/200px-Rivaroxaban.svg.png",
+        "advantages": "Reduces stroke and blood clot risk | ஸ்ட்ரோக் மற்றும் இரத்த உறைவைத் தடுக்கும்",
+        "disadvantages": "May cause internal bleeding | உட்புற இரத்தக்கசிவு ஏற்படலாம்",
+        "warning": "Avoid in severe liver disease | தீவிர கல்லீரல் கோளாறு உள்ளவர்கள் தவிர்க்க வேண்டும்"
+    },
+
+    "Isosorbide Mononitrate | ஐசோசார்பைட் மோனோநைட்ரேட்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Isosorbide_mononitrate.svg/200px-Isosorbide_mononitrate.svg.png",
+        "advantages": "Relieves chest pain (angina) | நெஞ்சுவலியை (அஞ்சினா) குறைக்கும்",
+        "disadvantages": "May cause headaches and dizziness | தலைவலி மற்றும் தலைசுற்றல் ஏற்படலாம்",
+        "warning": "Avoid combining with erectile dysfunction drugs | மருந்துகள் (வியாகிரா போன்றவை) உடன் சேர்க்க வேண்டாம்"
+    },
+
+    "Ivabradine | இவாப்ரடின்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Ivabradine.svg/200px-Ivabradine.svg.png",
+        "advantages": "Lowers heart rate and improves heart function | இதயத்துடிப்பை குறைத்து இதய செயல்பாட்டை மேம்படுத்தும்",
+        "disadvantages": "May cause vision problems and slow heart rate | பார்வை மங்கல் மற்றும் இதயத்துடிப்பு குறைவு ஏற்படலாம்",
+        "warning": "Avoid in severe liver disease and pregnancy | தீவிர கல்லீரல் கோளாறு மற்றும் கர்ப்ப காலத்தில் தவிர்க்க வேண்டும்"
+    },
+    "Alprazolam | அல்ப்ராஸோலம்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Alprazolam.svg/200px-Alprazolam.svg.png",
+        "advantages": "Used for anxiety and panic disorders | கவலை மற்றும் பீதி கோளாறுகளுக்கு பயன்படுகிறது",
+        "disadvantages": "May cause drowsiness, addiction, and withdrawal symptoms | மயக்கத்தையும், பழக்கத்தையும் ஏற்படுத்தலாம்",
+        "warning": "Avoid long-term use and alcohol | நீண்ட காலம் பயன்படுத்த வேண்டாம் மற்றும் மது அருந்த வேண்டாம்"
+    },
+
+    "Diazepam | டையசிபாம்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Diazepam.svg/200px-Diazepam.svg.png",
+        "advantages": "Relieves anxiety, muscle spasms, and seizures | கவலை, தசை மர்வுகள், மற்றும் மயக்க நோய்க்கு பயன்படுகிறது",
+        "disadvantages": "Can cause drowsiness, dizziness, and dependence | மயக்கம், தலைசுற்றல் மற்றும் பழக்கம் ஏற்படலாம்",
+        "warning": "Avoid in elderly and those with respiratory problems | வயதானவர்கள் மற்றும் சுவாச கோளாறுகள் உள்ளவர்கள் கவனமாக பயன்படுத்த வேண்டும்"
+    },
+
+    "Clonazepam | கிளோனாசபாம்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Clonazepam.svg/200px-Clonazepam.svg.png",
+        "advantages": "Used for seizures and panic disorders | மயக்க நோய் மற்றும் பீதி கோளாறுகளுக்கு பயன்படுகிறது",
+        "disadvantages": "May cause sedation and memory problems | அதிக நரம்பு ஓய்வு மற்றும் நினைவாற்றல் பிரச்சனைகள் ஏற்படலாம்",
+        "warning": "Avoid abrupt stopping due to withdrawal risk | திடீரென நிறுத்தக்கூடாது, பழக்கத்திலிருந்து வெளியேறும் போது கவனமாக இருக்க வேண்டும்"
+    },
+
+    "Sertraline | செர்ட்ராலின்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Sertraline_structure.svg/200px-Sertraline_structure.svg.png",
+        "advantages": "Treats depression, anxiety, and OCD | மனச்சோர்வு, கவலை மற்றும் ஓசிடிக்கு பயன்படுகிறது",
+        "disadvantages": "May cause nausea, insomnia, and sexual dysfunction | வாந்தி உணர்வு, உறக்கக் கோளாறு, மற்றும் பாலியல் பிரச்சனைகள் ஏற்படலாம்",
+        "warning": "Takes a few weeks to show full effect | முழு விளைவை காண சில வாரங்கள் ஆகலாம்"
+    },
+
+    "Fluoxetine | ஃப்ளுயோக்சிட்டின்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Fluoxetine.svg/200px-Fluoxetine.svg.png",
+        "advantages": "Used for depression, anxiety, and bulimia | மனச்சோர்வு, கவலை, மற்றும் அதிக உணவு உண்பதற்கான கோளாறுக்கு பயன்படுகிறது",
+        "disadvantages": "May cause agitation and appetite changes | பதற்றம் மற்றும் உணவு விருப்ப மாற்றங்கள் ஏற்படலாம்",
+        "warning": "May increase suicidal thoughts in young adults | இளையவர்கள் தற்கொலை எண்ணங்களை அதிகரிக்கக்கூடும்"
+    },
+
+    "Escitalopram | எஸ்சிட்டாலோப்ராம்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Escitalopram_structure.svg/200px-Escitalopram_structure.svg.png",
+        "advantages": "Used for depression and anxiety | மனச்சோர்வு மற்றும் கவலைக்காகப் பயன்படுகிறது",
+        "disadvantages": "Can cause drowsiness, weight gain, and dry mouth | மயக்கம், உடல் எடை அதிகரித்தல் மற்றும் வாய் உலர்வு ஏற்படலாம்",
+        "warning": "Do not stop suddenly; taper dose gradually | திடீரென நிறுத்தக்கூடாது, تدريجيயாக குறைக்க வேண்டும்"
+    },
+
+    "Amitriptyline | அமிட்ரிப்டைலின்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Amitriptyline.svg/200px-Amitriptyline.svg.png",
+        "advantages": "Used for depression, nerve pain, and migraines | மனச்சோர்வு, நரம்பு வலி, மற்றும் தலைவலி (மைக்ரேன்) க்கு பயன்படுகிறது",
+        "disadvantages": "May cause drowsiness, weight gain, and constipation | மயக்கம், உடல் எடை அதிகரித்தல் மற்றும் மலச்சிக்கல் ஏற்படலாம்",
+        "warning": "Avoid in heart disease patients | இதய நோயாளிகள் தவிர்க்க வேண்டும்"
+    },
+
+    "Mirtazapine | மிர்டாஸபைன்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Mirtazapine.svg/200px-Mirtazapine.svg.png",
+        "advantages": "Used for depression and sleep problems | மனச்சோர்வு மற்றும் உறக்க பிரச்சனைகளுக்காக பயன்படுகிறது",
+        "disadvantages": "May cause increased appetite and drowsiness | அதிக உணவு விருப்பம் மற்றும் மயக்கம் ஏற்படலாம்",
+        "warning": "Caution in diabetes due to weight gain risk | நீரிழிவு நோயாளிகள் கவனமாக பயன்படுத்த வேண்டும்"
+    },
+
+    "Zolpidem | சொல்பிடெம்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Zolpidem.svg/200px-Zolpidem.svg.png",
+        "advantages": "Helps with short-term insomnia | குறுகிய கால தூக்கமின்மைக்கு பயன்படுகிறது",
+        "disadvantages": "May cause dizziness, confusion, and dependence | தலைசுற்றல், குழப்பம், மற்றும் பழக்கம் ஏற்படலாம்",
+        "warning": "Use only for short duration | நீண்ட காலம் பயன்படுத்தக்கூடாது"
+    },
+
+    "Melatonin | மெலட்டோனின்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Melatonin2DACS.svg/200px-Melatonin2DACS.svg.png",
+        "advantages": "Regulates sleep-wake cycle | தூக்க சுழற்சியை கட்டுப்படுத்த உதவும்",
+        "disadvantages": "May cause vivid dreams and daytime drowsiness | கனவுகள் அதிகமாக வருதல் மற்றும் பகலில் மயக்கம் ஏற்படலாம்",
+        "warning": "Avoid in pregnancy and breastfeeding | கர்ப்பம் மற்றும் பாலூட்டும் பெண்கள் தவிர்க்க வேண்டும்"
+    },
+
+    "Tetrahydrozoline | டெட்ராஹைட்ரோசோலின்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Tetrahydrozoline.svg/200px-Tetrahydrozoline.svg.png",
+        "advantages": "Reduces eye redness and irritation | கண் சிவப்பு மற்றும் எரிச்சலை குறைக்கும்",
+        "disadvantages": "May cause rebound redness with overuse | அதிகமாக பயன்படுத்தினால் கண்கள் மீண்டும் சிவந்து காணப்படும்",
+        "warning": "Avoid prolonged use | நீண்ட நாட்கள் தொடர்ந்து பயன்படுத்த வேண்டாம்"
+    },
+
+    "Ciprofloxacin Ear Drops | சிப்ரோஃப்ளோக்சாசின் காதுத் துளிகள்": {
+        "advantages": "Treats bacterial ear infections | பாக்டீரியா காரணமான காது தொற்றுக்கு பயன்படுகிறது",
+        "warning": "Avoid if allergic to quinolones | க்வினோலோன் மருந்துகளுக்கு அலர்ஜி இருந்தால் தவிர்க்க வேண்டும்"
+    },
+
+    "Ofloxacin Eye Drops | ஒஃப்ளோக்சாசின் கண் துளிகள்": {
+        "advantages": "Used for bacterial eye infections | கண் பாக்டீரியா தொற்றுக்கு பயன்படுகிறது",
+        "warning": "Do not touch the dropper tip to avoid contamination | தொற்று ஏற்படாமல் இருக்க துளி குழாயின் முனையை தொட வேண்டாம்"
+    },
+    "Epinephrine | எபினெஃப்ரின்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Epinephrine.svg/200px-Epinephrine.svg.png",
+        "advantages": "Used for severe allergic reactions (anaphylaxis) and cardiac arrest | தீவிர அலர்ஜி மற்றும் இதயநிறுத்தம் ஆகியவற்றுக்கு பயன்படுகிறது",
+        "disadvantages": "May cause rapid heartbeat and high blood pressure | இதயத்துடிப்பு அதிகரித்தல் மற்றும் உயர் இரத்த அழுத்தம் ஏற்படலாம்",
+        "warning": "Use with caution in heart disease patients | இதய நோயாளிகள் கவனமாக பயன்படுத்த வேண்டும்"
+    },
+
+    "Activated Charcoal | செயலில் இருக்கும் நிலக்கரி": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Activated_Charcoal.jpg/200px-Activated_Charcoal.jpg",
+        "advantages": "Used for poisoning by absorbing toxins | விஷ உணவு மற்றும் மருந்து மிகை பரிமாற்றத்திற்கு பயன்படுத்தப்படுகிறது",
+        "disadvantages": "May cause constipation and black stools | மலச்சிக்கல் மற்றும் கருப்பு வண்ண உறிஞ்சப்பட்ட மலம் ஏற்படலாம்",
+        "warning": "Not effective for all poisons (e.g., heavy metals) | அனைத்து விஷங்களுக்கும் வேலை செய்யாது (உதா: கனிமங்கள்)"
+    },
+
+    "Sodium Chloride (IV fluids) | சோடியம் குளோரைடு (IV திரவம்)": {
+        "advantages": "Used for dehydration and electrolyte balance | நீர்ச்சத்து இழப்பு மற்றும் மினரல் சமநிலைக்கு பயன்படுகிறது",
+        "disadvantages": "Excess use may cause fluid overload | அதிக அளவில் பயன்படுத்தினால் உடலில் அதிக நீர் சேரும்",
+        "warning": "Use with caution in heart and kidney disease patients | இதய மற்றும் சிறுநீரக நோயாளிகள் கவனமாக பயன்படுத்த வேண்டும்"
+    },
+
+    "Potassium Chloride (IV fluids) | பொட்டாசியம் குளோரைடு (IV திரவம்)": {
+        "advantages": "Used to treat low potassium levels (hypokalemia) | குறைந்த பொட்டாசியம் அளவை சரிசெய்ய பயன்படுகிறது",
+        "disadvantages": "High doses can cause heart rhythm problems | அதிக அளவில் உட்கொள்கையில் இதயத்துடிப்பு கோளாறு ஏற்படலாம்",
+        "warning": "Never give undiluted IV as it can be fatal | கலக்காமல் நேரடியாக செலுத்தக் கூடாது"
+    },
+
+    "Tranexamic Acid | டிரானெக்ஸாமிக் அமிலம்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Tranexamic_acid.svg/200px-Tranexamic_acid.svg.png",
+        "advantages": "Reduces heavy bleeding in surgery, injury, and menstruation | அறுவை சிகிச்சை, காயம், மற்றும் மாதவிடாய் இரத்தக்கசிவை குறைக்கும்",
+        "disadvantages": "May cause nausea and blood clot risk | வாந்தி மற்றும் இரத்த உறைவு அபாயம் ஏற்படலாம்",
+        "warning": "Avoid in patients with clotting disorders | இரத்த உறைவு பிரச்சனை உள்ளவர்கள் தவிர்க்க வேண்டும்"
+    },
+
+    "Lidocaine | லிடோக்கெயின்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Lidocaine.svg/200px-Lidocaine.svg.png",
+        "advantages": "Local anesthetic for pain relief | உள்ளூர் உணர்வு மரப்பிக்கும் மருந்தாக பயன்படுகிறது",
+        "disadvantages": "May cause allergic reactions and dizziness | அலர்ஜி மற்றும் தலைசுற்றல் ஏற்படலாம்",
+        "warning": "Avoid overdose as it may affect the heart | அதிக அளவில் செலுத்தினால் இதய செயல்பாடு பாதிக்கலாம்"
+    },
+
+    "Adrenaline | அட்ரினலின்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Epinephrine.svg/200px-Epinephrine.svg.png",
+        "advantages": "Used for severe allergic reactions and cardiac arrest | தீவிர அலர்ஜி மற்றும் இதயநிறுத்தம் ஆகியவற்றில் பயன்படுகிறது",
+        "disadvantages": "Can cause anxiety, sweating, and rapid heartbeat | பதற்றம், வியர்வை, மற்றும் இதயத்துடிப்பு அதிகரித்தல் ஏற்படலாம்",
+        "warning": "Avoid in patients with severe heart conditions | தீவிர இதய நோய் உள்ளவர்கள் கவனமாக பயன்படுத்த வேண்டும்"
+    },
+
+    "Glucagon | குளூககான்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Glucagon.svg/200px-Glucagon.svg.png",
+        "advantages": "Treats severe hypoglycemia (low blood sugar) | தீவிர குறைந்த இரத்த சர்க்கரை நிலையை சிகிச்சையளிக்க பயன்படுகிறது",
+        "disadvantages": "May cause nausea and vomiting | வாந்தி மற்றும் மயக்கம் ஏற்படலாம்",
+        "warning": "Only works if the liver has stored glucose | கல்லீரலில் சர்க்கரை சேமிப்பு இல்லையெனில் வேலை செய்யாது"
+    },
+
+    "Naloxone | நலோக்சோன்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Naloxone_structure.svg/200px-Naloxone_structure.svg.png",
+        "advantages": "Reverses opioid overdose | ஓபியோயிட் (மயக்க மருந்து) மிகை பரிமாற்றத்திற்கு தடுப்பு மருந்தாக பயன்படுகிறது",
+        "disadvantages": "May cause withdrawal symptoms like sweating and agitation | வியர்வை மற்றும் பதற்றம் போன்ற விலகல் அறிகுறிகள் ஏற்படலாம்",
+        "warning": "Emergency use only, seek medical attention after use | அவசர பயன்பாட்டிற்கு மட்டும், மருத்துவ உதவி தேவை"
+    },
+
+    "Morphine | மோர்பின்": {
+        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Morphine.svg/200px-Morphine.svg.png",
+        "advantages": "Powerful pain reliever for severe pain | தீவிர வலிக்காக பயன்படும் சக்திவாய்ந்த மருந்து",
+        "disadvantages": "May cause drowsiness, addiction, and respiratory depression | மயக்கம், பழக்கம், மற்றும் மூச்சுத் திணறல் ஏற்படலாம்",
+        "warning": "Use with caution in patients with breathing problems | சுவாச கோளாறுகள் உள்ளவர்கள் கவனமாக பயன்படுத்த வேண்டும்"
+    }
         };
 
-        function searchMedicine(inputElement) {
-            let input = inputElement.value.toLowerCase();
-            let datalist = inputElement.nextElementSibling;
+        function searchMedicine() {
+            let input = document.getElementById("medicine").value.toLowerCase();
+            let datalist = document.getElementById("medicine-list");
             datalist.innerHTML = ""; 
 
             Object.keys(medicines).forEach(med => {
@@ -176,57 +750,61 @@
             });
         }
 
-        function showDetails(buttonElement) {
-            let inputElement = buttonElement.previousElementSibling.previousElementSibling.previousElementSibling;
-            let medicineName = inputElement.value;
-            let parentDiv = buttonElement.parentElement;
+        function showDetails() {
+            let medicineName = document.getElementById("medicine").value;
+            let resultDiv = document.getElementById("result");
 
             if (!medicineName || !medicines[medicineName]) {
                 alert("Please enter a valid medicine.");
                 return;
             }
 
-            let medicineCard = document.createElement("div");
-            medicineCard.classList.add("medicine-card");
-            medicineCard.innerHTML = `
-                <h2>${medicineName}</h2>
-                <img src="${medicines[medicineName].image}" alt="${medicineName}">
-                <p><strong>Advantages:</strong> ${medicines[medicineName].advantages}</p>
-                <p><strong>Disadvantages:</strong> ${medicines[medicineName].disadvantages}</p>
-                <p><strong>Warning:</strong> ${medicines[medicineName].warning}</p>
+            resultDiv.innerHTML = `
+                <div class="medicine-card">
+                    <h2>${medicineName}</h2>
+                    <img src="${medicines[medicineName].image}" alt="${medicineName}">
+                    <p><strong>Advantages:</strong> ${medicines[medicineName].advantages}</p>
+                    <p><strong>Disadvantages:</strong> ${medicines[medicineName].disadvantages}</p>
+                    <p><strong>Warning:</strong> ${medicines[medicineName].warning}</p>
+                </div>
             `;
-
-            parentDiv.appendChild(medicineCard);
         }
 
-        function addMedicineInput() {
-            let medicineContainer = document.getElementById("medicineContainer");
-
-            let newMedicineBlock = document.createElement("div");
-            newMedicineBlock.classList.add("medicine-block");
-            newMedicineBlock.innerHTML = `
-                <label>Medicine Name | மருந்தின் பெயர்:</label>
-                <input type="text" class="medicine-input" list="medicine-list" placeholder="Search Medicine... | மருந்து தேடு..." oninput="searchMedicine(this)">
-                <datalist id="medicine-list"></datalist>
-                <button class="voice-search" onclick="startVoiceSearch(this)">🎙 Voice Search</button>
-                <button onclick="showDetails(this)">Search | தேடுக</button>
+        function addTable() {
+            let additionalTables = document.getElementById("additionalTables");
+            let newTable = document.createElement("div");
+            newTable.innerHTML = `
+                <div class="dashboard">
+                    <label for="medicine">Medicine Name | மருந்தின் பெயர்:</label>
+                    <input type="text" class="medicine-input" list="medicine-list" placeholder="Search Medicine... | மருந்து தேடு..." oninput="searchMedicine()">
+                    <datalist id="medicine-list"></datalist>
+                    
+                    <button onclick="showAdditionalDetails(this)">Search | தேடுக</button>
+                </div>
+                <div class="result-card"></div>
             `;
-
-            medicineContainer.appendChild(newMedicineBlock);
+            additionalTables.appendChild(newTable);
         }
 
-        function startVoiceSearch(buttonElement) {
-            let inputElement = buttonElement.previousElementSibling;
-            let recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-            recognition.lang = "en-US";
-            recognition.start();
-            recognition.onresult = function(event) {
-                inputElement.value = event.results[0][0].transcript;
-            };
-        }
+        function showAdditionalDetails(button) {
+            let inputField = button.previousElementSibling.previousElementSibling;
+            let medicineName = inputField.value;
+            let resultDiv = button.nextElementSibling;
 
-        function toggleDarkMode() {
-            document.body.classList.toggle("dark-mode");
+            if (!medicineName || !medicines[medicineName]) {
+                alert("Please enter a valid medicine.");
+                return;
+            }
+
+            resultDiv.innerHTML = `
+                <div class="medicine-card">
+                    <h2>${medicineName}</h2>
+                    <img src="${medicines[medicineName].image}" alt="${medicineName}">
+                    <p><strong>Advantages:</strong> ${medicines[medicineName].advantages}</p>
+                    <p><strong>Disadvantages:</strong> ${medicines[medicineName].disadvantages}</p>
+                    <p><strong>Warning:</strong> ${medicines[medicineName].warning}</p>
+                </div>
+            `;
         }
     </script>
 </body>
