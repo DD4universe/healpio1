@@ -20,6 +20,7 @@
         <input type="text" placeholder="Medical Shop Certificate" style="width: 100%; padding: 10px; margin: 10px 0; border: none; border-radius: 5px; outline: none;">
         <input type="text" placeholder="Medical Shop Phone Number" style="width: 100%; padding: 10px; margin: 10px 0; border: none; border-radius: 5px; outline: none;">
         <button onclick="animateSignup()" style="width: 100%; padding: 10px; margin-top: 15px; background: #6a11cb; border: none; border-radius: 5px; color: white; cursor: pointer;">SIGNUP</button>
+        <p>Already signed up? <a href="medicallogin.html">Login</a></p>
     </div>
 
     <script>
