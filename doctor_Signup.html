@@ -8,6 +8,7 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
+            color: #ffffff;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -16,11 +17,15 @@
         }
 
         .Signup-container {
-            background: white;
+            background-image: url('download.jpeg');
+            background-size: cover; 
+            background-position: center center;
+            background-attachment: fixed; 
+            z-index: -1;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 350px;
+            width: 55%;
             text-align: center;
         }
 
@@ -89,9 +94,12 @@
 
             <label for="license">Doctor License (File Upload):</label>
             <input type="file" id="license" name="license" accept=".pdf,.jpg,.png" required>
+            <label for="password">CREATE PASSOWRD:</label>
+            <input type="password" id="password" name="password" required placeholder="Please create your password">
 
             <button type="submit" onclick="navigator('')">Signup</button>
         </form>
+        <p>already signup? <a href="#">Login</a></p>
         <p id="message"></p>
     </div>
 
