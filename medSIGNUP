@@ -10,7 +10,7 @@
         <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('https://source.unsplash.com/1600x900/?mountains,night') no-repeat center center/cover; opacity: 0.5;"></div>
     </div>
     
-    <div id="login-container" style="position: relative; z-index: 2; background: rgba(255, 255, 255, 0.1); padding: 30px; border-radius: 10px; backdrop-filter: blur(10px); text-align: center; width: 300px; box-shadow: 0 0 15px rgba(255, 255, 255, 0.2); display: flex; flex-direction: column; align-items: center; justify-content: center;">
+    <div id="signup-container" style="position: relative; z-index: 2; background: rgba(255, 255, 255, 0.1); padding: 30px; border-radius: 10px; backdrop-filter: blur(10px); text-align: center; width: 300px; box-shadow: 0 0 15px rgba(255, 255, 255, 0.2); display: flex; flex-direction: column; align-items: center; justify-content: center;">
         <h2 style="color: white; margin-bottom: 20px;">MEDICAL SHOP SIGN-IN</h2>
         <input type="text" placeholder="Name" style="width: 100%; padding: 10px; margin: 10px 0; border: none; border-radius: 5px; outline: none;">
         <input type="text" placeholder="Age" style="width: 100%; padding: 10px; margin: 10px 0; border: none; border-radius: 5px; outline: none;">
@@ -19,14 +19,14 @@
         <input type="text" placeholder="Medical Shop Address" style="width: 100%; padding: 10px; margin: 10px 0; border: none; border-radius: 5px; outline: none;">
         <input type="text" placeholder="Medical Shop Certificate" style="width: 100%; padding: 10px; margin: 10px 0; border: none; border-radius: 5px; outline: none;">
         <input type="text" placeholder="Medical Shop Phone Number" style="width: 100%; padding: 10px; margin: 10px 0; border: none; border-radius: 5px; outline: none;">
-        <button onclick="animateLogin()" style="width: 100%; padding: 10px; margin-top: 15px; background: #6a11cb; border: none; border-radius: 5px; color: white; cursor: pointer;">SIGNUP</button>
+        <button onclick="animateSignup()" style="width: 100%; padding: 10px; margin-top: 15px; background: #6a11cb; border: none; border-radius: 5px; color: white; cursor: pointer;">SIGNUP</button>
     </div>
 
     <script>
-        function animateLogin() {
-            let loginBox = document.getElementById('login-container');
-            loginBox.style.transform = 'scale(1.1)';
-            setTimeout(() => loginBox.style.transform = 'scale(1)', 300);
+        function animateSignup() {
+            let SignupBox = document.getElementById('signup-container');
+            SignupBox.style.transform = 'scale(1.1)';
+            setTimeout(() => SignupBox.style.transform = 'scale(1)', 300);
         }
     </script>
 </body>
