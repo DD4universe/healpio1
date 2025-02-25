@@ -9,45 +9,70 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
-        body { font-family: Arial, sans-serif; background-image:linear-gradient(135deg, #0f2027, #203a43, #2c5364); color: #d3d3d3;
-            animation: dynamicBackground 10s infinite alternate;
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-            transition: background 1s ease-in-out; }
+    body{
+        color: #dcdcec;
+    }
+    .background {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('images (6).jpeg'); /* Replace with your desired image */
+    background-size: cover;  /* Ensures the image covers the entire screen */
+    background-position: center center; /* Centers the image */
+    background-attachment: fixed; /* Keeps the image fixed when scrolling */
+    z-index: -1;
+}
+        .nav-link{
+            color: #d0cfd0;
+        }
+        .dark-mode {
+            background-color: #dcdcec;
+            color: #d3d3d3;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .toggle-dark-mode {
+            background-color: #ffb400;
+            color: rgb(231, 227, 227);
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .card {
+            margin-top: 3%;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(235, 228, 228, 0.1);
+            transition: transform 0.3s;
+        }
+        
         .container { margin-top: 20px; }
-        .card { background-color: #ffffff; margin-bottom: 15px; border-radius: 10px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); }
         .btn-map { background-color: #ffb400; color: white; border-radius: 5px; }
         .btn-appointment { background-color: #d0cfd0; color: #aa17df; border-radius: 5px;border-color: #203a43; }
         .spinner { display: none; }
-        nav a {
-    text-decoration: none;
-    color: #ffd400; 
-    background: linear-gradient(to right, blue, navy);
-}
-      .nava{
-        background-color: #000000;
-        color: #FFD700;
-        cursor: pointer;
-      }
-      .aboutnew{
-        margin-left: 95%;
-        
-      }
-      .aboutne{
-        margin-left: 88%;
-        background-color: #000000;
-        color: #FFD700;
-        cursor: pointer;
-      }
     </style>
 </head>
-<body>
-    <nav>
-        <ul>
-            <li><button class="nava mt-2 border-radius-2"> <a href="#contactForm" id="contactBtn">Doctor Secure Contact</a></button></li>
-            <li><button class="nava mt-2 border-radius-2"> <a href="#feedbackFormsss" id="contactBtn">Feedback</a></button></li>
-            <li><a href="#about" class="aboutne" id="doctorlogin">Doctor login</a></li>
-            <li><a href="#about" class="aboutnew">About</a></li>
-        </ul>
+<body class="background">
+    <nav class="navbar navbar-expand-lg bg-body-bark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="logonew.jpg" alt="Logo" width="60px" height="45px" class="d-inline-block align-text-top">
+        </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link" href="#contactForm">Doctor Secure Contact</a>
+              <a class="nav-link pl-3" href="#feedbackForm">Feedback</a>
+              <a class="nav-link" href="##doctorlogin" id="doctorlogin">Doctor login/Signup</a>
+              <a class="nav-link" href="#about">About</a>
+            </div>
+          </div>
+        </div>
     </nav>
     
     <div class="container">
@@ -74,11 +99,11 @@
                 <label for="specialization" class="form-label">Specialization</label>
                 <select class="form-select" id="specialization" aria-label="Select Specialization">
                     <option value="all">All</option>
-                    <option value="general">General Physician</option>
-                    <option value="gynecologist">Gynecologist</option>
-                    <option value="pediatrics">Pediatrics</option>
-                    <option value="ophthalmology">Ophthalmology (Eye Care)</option>
-                    <option value="dermatology">Dermatology (Skin Care)</option>
+                    <option value="general">General Physician(பொதுநல மருத்துவர்)</option>
+                    <option value="gynecologist">Gynecologist(மகப்பேறு மருத்துவர் - பெண்களுக்கே வரும் நோய்க்கு மருத்துவம் பார்க்கும் மருத்துவர்)                        )                    </option>
+                    <option value="pediatrics">Pediatrics(குழந்தை மருத்துவம்)</option>
+                    <option value="ophthalmology">Ophthalmology (Eye Care-கண் மருத்துவம்)</option>
+                    <option value="dermatology">Dermatology (Skin Care-தோல் மருத்துவம்)</option>
                     <option value="orthopedics">Orthopedics (Bone & Joint Care)</option>
                     <option value="cardiology">Cardiology (Heart Care)</option>
                     <option value="neurology">Neurology (Brain & Nervous System)</option>
@@ -130,7 +155,7 @@
                     
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary">Filter</button>
+            <button type="submit" class="btn btn-primary">Apply Filter First</button>
             <div class="spinner mt-3" id="loadingSpinner">
                 <div class="spinner-border text-primary" role="status">
                     <span class="visually-hidden">Loading...</span>
@@ -1086,6 +1111,766 @@
     </div>
 </div>
 <!-- thiruengode hospital and clinics are completed-->
+ <!-- Rasipural clinic and hopital start-->
+ <div class="col-md-4 facility hospital general namakkal">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Sugam Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> General Physician</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Sugam+Hospital+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.sugamhospital.com/" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Santhi Hospital (Dr. M.R. Santhi Hospital)</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> General Physician</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Santhi+Hospital+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://drmrsanthihospital.com" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Manickam Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> General Physician</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Manickam+Hospital+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/Manickam-Speciality-Hospital-Opposite-T-V-Showroom-and-Near-Bus-Stand-Rasipuram-East/9999P4287-4287-220724211655-K6G7_BZDET" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Sudha Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> General Physician</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Sudha+Hospital+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/Sudha-hospital-Near-Muniappan-Koil-Andagalur-Gate-Rasipuram-Bazaar/9999P4287-4287-201126123338-U5F2_BZDET" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Surya Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> Orthopedics/General Physician</p>
+            <p class="card-text"><strong>Timings:</strong> Not specified</p>
+            <a href="https://www.google.com/maps?q=Surya+Hospital+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/Surya-Hospital-Near-Old-Bus-Stand-Rasipuram-Ho/9999PXXXX-XXXX-100821171823-C7F5_BZDET" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">ARAVIND HOSPITAL</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> General Physician</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=ARAVIND+HOSPITAL+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/Aravind-Hospital-Near-Peraisamy-Tea-Shop-Bus-Stop-Rasipuram-HO/9999P4286-4286-120716154036-C3B1_BZDET" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Dr. Sivakumar Hospital (Siva Nursing Home)</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> General Physician</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Dr.Sivakumar+Hospital+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/Dr-R-Sivakumar-Rasipuram-HO/9999P4286-4286-090815162700-K7L8DC_BZDET" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">DUBAI SUNDAR HOSPITAL</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> General Surgery/Pediatrics/Preventive Medicine</p>
+            <p class="card-text"><strong>Timings:</strong> Not specified</p>
+            <a href="https://www.google.com/maps?q=DUBAI+SUNDAR+HOSPITAL+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/Dubai-Sundar-Hospital-Opposite-Municipality-Office-Rasipuram-Bazaar/9999P4287-4287-220107010013-H5N3_BZDET" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">MR Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> General Physician</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=MR+Hospital+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/M-R-Hospital-Near-Old-Bus-Stand-Rasipuram-Bazaar/9999P4287-4287-170926112653-Z3Q9_BZDET" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">MR Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> General Physician</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=MR+Hospital+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/M-R-Hospital-Near-Old-Bus-Stand-Rasipuram-Bazaar/9999P4287-4287-170926112653-Z3Q9_BZDET" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Dr. AD Sambathkumar Ortho Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> Orthopedics</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Dr.+AD+Sambathkumar+Ortho+Hospital+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/Dr-AD-Sambathkumar-Ortho-Hospital/nct-10345065" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">JEEVAN HOSPITAL (RASIPURAM)</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> General Physician</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=JEEVAN+HOSPITAL+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/Jeevan-Hospital-Near-Sendhamangalam-X-Road-Rasipuram-East/9999P4287-4287-221130175920-D6S6_BZDET" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">A. Singaravel Clinic</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> General Physician</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=A.+Singaravel+Clinic+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/A-Singaravel-Clinic-Rasipuram/9999P4287-4287-210331115756-M9Q4_BZDET" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">C N Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> General Physician</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=C+N+Hospital+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/C-N-Hospital-Near-Union-Office-Rasipuram-Bazaar/9999P4287-4287-150814122118-X9X7_BZDET" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Subam Eye Care Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> Eye Care</p>
+            <p class="card-text"><strong>Timings:</strong> Not specified</p>
+            <a href="https://www.google.com/maps?q=Subam+Eye+Care+Hospital+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="http://www.subameye.com/" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Dr. Thangavel DCH Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> General Physician</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Dr.+Thangavel+DCH+Hospital+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/Dr-Thangavel-DCH-Hospital-Near-Sendhamangalam-X-Road-Rasipuram-East/9999P4287-4287-221130175920-D6S6_BZDET" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Malar Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> General Physician</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Malar+Hospital+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/Malar-Hospital-Near-Bus-Stand-Indra-Nagar-Rasipuram/9999P4287-4287-221130175920-D6S6_BZDET" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Alim Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> General Physician</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Alim+Hospital+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital eye rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Jeyam Eye Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> Eye Hospital</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Jeyam+Eye+Hospital+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Natesan Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> General Physician</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Natesan+Hospital+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="#" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Kovai RS Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> General Physician</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Kovai+RS+Hospital+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/Kovai-RS-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Rasi Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> General Physician</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Rasi+Hospital+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/Rasi-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Thulasiraman Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> General Physician</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Thulasiraman+Hospital+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/Thulasiraman-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Anbu Clinic</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> General Physician</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Anbu+Clinic+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/Anbu-Clinic" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Suresh Kanna Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> General Physician</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Suresh+Kanna+Hospital+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/Suresh-Kanna-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Vel Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> General Physician</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Vel+Hospital+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/Vel-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Dr. N Senthil Kumar M.B.B.S., D.L.O., (ENT)</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> ENT Specialist</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Dr.+N+Senthil+Kumar+ENT+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/Dr-N-Senthil-Kumar-ENT" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Vasumathi Eye Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> Eye Specialist</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Vasumathi+Eye+Hospital+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/Vasumathi-Eye-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Dr. A. Natarajan Siddha Clinic</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> Siddha Medicine</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Dr.+A.+Natarajan+Siddha+Clinic+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/Dr-A-Natarajan-Siddha-Clinic" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Dr. AT Nambi Clinic</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> General Physician</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Dr.+AT+Nambi+Clinic+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/Dr-AT-Nambi-Clinic" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Govt. Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> General Healthcare</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Govt.+Hospital+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/Govt-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">JPS Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> General Healthcare</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=JPS+Hospital+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/JPS-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">JCS Scans and Diagnostics</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> Diagnostic Center</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=JCS+Scans+and+Diagnostics+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/JCS-Scans-and-Diagnostics" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Suguna Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> General Healthcare</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Suguna+Hospital+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/Suguna-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Arokya Womens Center</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> Women's Health & Maternity</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Arokya+Womens+Center+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/Arokya-Womens-Center" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Siddha Chetty Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> Siddha Medicine</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Siddha+Chetty+Hospital+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/Siddha-Chetty-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Dhaya Sankar Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> General Healthcare</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Dhaya+Sankar+Hospital+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/Dhaya-Sankar-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Dr. Sangavi's Homoeo And Aesthetic Clinic</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> Homeopathy & Aesthetic Treatments</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Dr.+Sangavi's+Homoeo+And+Aesthetic+Clinic+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/Dr-Sangavis-Homoeo-And-Aesthetic-Clinic" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Mythili Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> General Healthcare</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Mythili+Hospital+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/Mythili-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Government Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> General Healthcare</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Government+Hospital+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/Government-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Valli Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> General Healthcare</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Valli+Hospital+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/Valli-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div> 
+</div>
+<div class="col-md-4 facility hospital general rasipuram">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Adhav Scans & Akshaya ENT</h5>
+            <p class="card-text"><strong>Location:</strong> Rasipuram</p>
+            <p class="card-text"><strong>Specialization:</strong> Scanning & ENT Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Adhav+Scans+%26+Akshaya+ENT+Rasipuram" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Rasipuram/Adhav-Scans-Akshaya-ENT" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<!-- Rasipuram completed-->
+ <!-- Kumarapalayam Start-->
+ <div class="col-md-4 facility hospital general komarapalayam">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Shri Sathyanarayana Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Komarapalayam</p>
+            <p class="card-text"><strong>Specialization:</strong> Scanning & ENT Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Shri+Sathyanarayana+Hospital+Komarapalayam" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Komarapalayam/Shri-Sathyanarayana-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general komarapalayam">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Nirmala Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Komarapalayam</p>
+            <p class="card-text"><strong>Specialization:</strong> Scanning & ENT Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Nirmala+Hospital+Komarapalayam" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Komarapalayam/Nirmala-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general komarapalayam">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Supreme Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Komarapalayam</p>
+            <p class="card-text"><strong>Specialization:</strong> Scanning & ENT Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Supreme+Hospital+Komarapalayam" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Komarapalayam/Supreme-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general komarapalayam">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Sri Kumaran Hospital, Komarapalayam</h5>
+            <p class="card-text"><strong>Location:</strong> Komarapalayam</p>
+            <p class="card-text"><strong>Specialization:</strong> Scanning & ENT Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Sri+Kumaran+Hospital+Komarapalayam" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Komarapalayam/Sri-Kumaran-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general komarapalayam">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Government Hospital - Komarapalayam</h5>
+            <p class="card-text"><strong>Location:</strong> Komarapalayam</p>
+            <p class="card-text"><strong>Specialization:</strong> Scanning & ENT Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Government+Hospital+Komarapalayam" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Komarapalayam/Government-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general komarapalayam">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">TULIR DIABETES and FOOT CARE</h5>
+            <p class="card-text"><strong>Location:</strong> Komarapalayam</p>
+            <p class="card-text"><strong>Specialization:</strong> Diabetes & Foot Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=TULIR+DIABETES+and+FOOT+CARE+Komarapalayam" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Komarapalayam/TULIR-DIABETES-and-FOOT-CARE" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general komarapalayam">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Suppreme Hospital Ortho & Maternity Centre</h5>
+            <p class="card-text"><strong>Location:</strong> Komarapalayam</p>
+            <p class="card-text"><strong>Specialization:</strong> Ortho & Maternity Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Suppreme+Hospital+Ortho+%26+Maternity+Centre+Komarapalayam" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Komarapalayam/Suppreme-Hospital-Ortho-Maternity-Centre" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general komarapalayam">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">GURUNATH HOSPITAL</h5>
+            <p class="card-text"><strong>Location:</strong> Komarapalayam</p>
+            <p class="card-text"><strong>Specialization:</strong> Scanning & ENT Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=GURUNATH+HOSPITAL+Komarapalayam" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Komarapalayam/GURUNATH-HOSPITAL" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general komarapalayam">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">KAMALAM HOSPITAL</h5>
+            <p class="card-text"><strong>Location:</strong> Komarapalayam</p>
+            <p class="card-text"><strong>Specialization:</strong> Scanning & ENT Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=KAMALAM+HOSPITAL+Komarapalayam" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Komarapalayam/KAMALAM-HOSPITAL" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general komarapalayam">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Mirdhini Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Komarapalayam</p>
+            <p class="card-text"><strong>Specialization:</strong> Scanning & ENT Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Mirdhini+Hospital+Komarapalayam" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Komarapalayam/Mirdhini-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general komarapalayam">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Uma Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Komarapalayam</p>
+            <p class="card-text"><strong>Specialization:</strong> Scanning & ENT Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Uma+Hospital+Komarapalayam" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Komarapalayam/Uma-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general komarapalayam">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Lotus Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Komarapalayam</p>
+            <p class="card-text"><strong>Specialization:</strong> Scanning & ENT Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Lotus+Hospital+Komarapalayam" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Komarapalayam/Lotus-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general komarapalayam">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">RAMKI HOSPITAL</h5>
+            <p class="card-text"><strong>Location:</strong> Komarapalayam</p>
+            <p class="card-text"><strong>Specialization:</strong> Scanning & ENT Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=RAMKI+HOSPITAL+Komarapalayam" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Komarapalayam/RAMKI-HOSPITAL" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general komarapalayam">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Jothikumar Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Komarapalayam</p>
+            <p class="card-text"><strong>Specialization:</strong> Scanning & ENT Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Jothikumar+Hospital+Komarapalayam" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Komarapalayam/Jothikumar-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general komarapalayam">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Colony Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Komarapalayam</p>
+            <p class="card-text"><strong>Specialization:</strong> Scanning & ENT Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Colony+Hospital+Komarapalayam" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Komarapalayam/Colony-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general komarapalayam">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Nakul Health Clinic</h5>
+            <p class="card-text"><strong>Location:</strong> Komarapalayam</p>
+            <p class="card-text"><strong>Specialization:</strong> Scanning & ENT Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Nakul+Health+Clinic+Komarapalayam" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Komarapalayam/Nakul-Health-Clinic" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general komarapalayam">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">THIRUKARTHI HOSPITALS</h5>
+            <p class="card-text"><strong>Location:</strong> Komarapalayam</p>
+            <p class="card-text"><strong>Specialization:</strong> Scanning & ENT Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=THIRUKARTHI+HOSPITALS+Komarapalayam" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Komarapalayam/THIRUKARTHI-HOSPITALS" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general komarapalayam">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">ARAM SIDDHA HOSPITAL</h5>
+            <p class="card-text"><strong>Location:</strong> Komarapalayam</p>
+            <p class="card-text"><strong>Specialization:</strong> Siddha Medicine & Holistic Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=ARAM+SIDDHA+HOSPITAL+Komarapalayam" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Komarapalayam/ARAM-SIDDHA-HOSPITAL" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general komarapalayam">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Excel Naturopathy Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Komarapalayam</p>
+            <p class="card-text"><strong>Specialization:</strong> Naturopathy & Holistic Care</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Excel+Naturopathy+Hospital+Komarapalayam" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Komarapalayam/Excel-Naturopathy-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general komarapalayam">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Raja Eye Hospital Komarapalayam</h5>
+            <p class="card-text"><strong>Location:</strong> Komarapalayam</p>
+            <p class="card-text"><strong>Specialization:</strong> Eye Care & Surgery</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Raja+Eye+Hospital+Komarapalayam" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Komarapalayam/Raja-Eye-Hospital-Komarapalayam" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<div class="col-md-4 facility hospital general komarapalayam">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Kavin Dental Hospital</h5>
+            <p class="card-text"><strong>Location:</strong> Komarapalayam</p>
+            <p class="card-text"><strong>Specialization:</strong> Dental Care & Oral Surgery</p>
+            <p class="card-text"><strong>Timings:</strong> 24/7</p>
+            <a href="https://www.google.com/maps?q=Kavin+Dental+Hospital+Komarapalayam" target="_blank" class="btn btn-map">View on Map</a>
+            <a href="https://www.justdial.com/Komarapalayam/Kavin-Dental-Hospital" target="_blank" class="btn btn-appointment">Visit Website</a>
+        </div>
+    </div>
+</div>
+<!-- Kumarapalayam completed-->
     </div>
 
         <!-- Secure Contact Form -->
@@ -1192,6 +1977,9 @@
             event.preventDefault(); // Prevent default jump behavior
             document.getElementById("contactForm").scrollIntoView({ behavior: "smooth" });
         });
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
     </script>
     <script>
         document.getElementById('doctorlogin').addEventListener('click', function() {
