@@ -3,131 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doctor Login</title>
+    <title>Doctor Sign-Up</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #4a90e2, #a1c4fd);
+            position: relative;
         }
 
-        .Signup-container {
-            background-image: url('download.jpeg');
-            background-size: cover; 
-            background-position: center center;
-            background-attachment: fixed; 
-            z-index: -1;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 55%;
+        /* Background animation */
+        .floating-icons {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .icon {
+            position: absolute;
+            width: 50px;
+            opacity: 0.2;
+            animation: float 12s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 0.2; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+
+        #signup-container {
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 25px;
+            border-radius: 12px;
+            backdrop-filter: blur(15px);
             text-align: center;
+            width: 350px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         h2 {
-            margin-bottom: 20px;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            text-align: left;
-            margin: 10px 0 5px;
+            color: white;
+            margin-bottom: 15px;
         }
 
         input {
             width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 8px 0;
+            border: none;
             border-radius: 5px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        input[type="file"] {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            cursor: pointer;
         }
 
         button {
-            background: #28a745;
-            color: white;
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
             border: none;
-            padding: 10px;
-            cursor: pointer;
             border-radius: 5px;
+            background: #6a11cb;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
         }
 
         button:hover {
-            background: #218838;
+            background: #5a0fa6;
         }
 
-        #message {
+        p {
+            color: white;
             margin-top: 10px;
-            color: red;
+            font-size: 13px;
+        }
+
+        a {
+            color: #ffd700;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
-    <div class="Signup-container">
-        <h2>Doctor Signup</h2>
-        <form id="doctorSignForm">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
 
-            <label for="age">Age:</label>
-            <input type="number" id="age" name="age" required>
+    <!-- Floating medical icons -->
+    <div class="floating-icons">
+        <img src="https://cdn-icons-png.flaticon.com/512/2831/2831236.png" class="icon" style="left: 10%; animation-duration: 14s;" loading="lazy">
+        <img src="https://cdn-icons-png.flaticon.com/512/2831/2831239.png" class="icon" style="left: 40%; animation-duration: 16s;" loading="lazy">
+        <img src="https://cdn-icons-png.flaticon.com/512/2831/2831250.png" class="icon" style="left: 70%; animation-duration: 18s;" loading="lazy">
+        <img src="https://cdn-icons-png.flaticon.com/512/2831/2831272.png" class="icon" style="left: 90%; animation-duration: 20s;" loading="lazy">
+    </div>
 
-            <label for="specialization">Specialization:</label>
-            <input type="text" id="specialization" name="specialization" required>
-
-            <label for="clinic">Clinic/Hospital Name:</label>
-            <input type="text" id="clinic" name="clinic" required>
-
-            <label for="address">Clinic/Hospital Address:</label>
-            <input type="text" id="address" name="address" required>
-
-            <label for="contact">Contact Number:</label>
-            <input type="tel" id="contact" name="contact" pattern="[0-9]{10}" maxlength="10" required placeholder="Enter 10-digit number">
-
-            <label for="license">Doctor License (File Upload):</label>
-            <input type="file" id="license" name="license" accept=".pdf,.jpg,.png" required>
-            <label for="password">CREATE PASSOWRD:</label>
-            <input type="password" id="password" name="password" required placeholder="Please create your password">
-
-            <button type="submit" onclick="navigator('')">Signup</button>
+    <div id="signup-container">
+        <h2>DOCTOR SIGNUP</h2>
+        <form id="signup-form">
+            <input type="text" id="name" placeholder="Name" required>
+            <input type="number" id="age" placeholder="Age" min="25" max="100" required>
+            <input type="text" id="specialization" placeholder="Specialization" required>
+            <input type="text" id="hospital" placeholder="Clinic/Hospital Name" required>
+            <input type="text" id="address" placeholder="Clinic/Hospital Address" required>
+            <input type="tel" id="contact" placeholder="Contact Number" pattern="[0-9]{10}" required>
+            <label style="color: white;">Doctor License:</label>
+            <input type="file" id="license" accept=".pdf,.jpg,.png" required>
+            <input type="password" id="password" placeholder="Create Password" minlength="6" required>
+            <button type="submit">SIGNUP</button>
         </form>
-        <p>already signup? <a href="#">Login</a></p>
-        <p id="message"></p>
+        <p>Already signed up? <a href="doctor_login.html">Login</a></p>
     </div>
 
     <script>
-        document.getElementById("doctorSignForm").addEventListener("submit", function(event) {
+        document.getElementById('signup-form').addEventListener('submit', function(event) {
             event.preventDefault();
-
-            let name = document.getElementById("name").value;
-            let age = document.getElementById("age").value;
-            let specialization = document.getElementById("specialization").value;
-            let clinic = document.getElementById("clinic").value;
-            let address = document.getElementById("address").value;
-            let contact = document.getElementById("contact").value;
-            let license = document.getElementById("license").files[0];
+            
+            let name = document.getElementById('name').value;
+            let age = document.getElementById('age').value;
+            let specialization = document.getElementById('specialization').value;
+            let hospital = document.getElementById('hospital').value;
+            let address = document.getElementById('address').value;
+            let contact = document.getElementById('contact').value;
+            let license = document.getElementById('license').files[0];
+            let password = document.getElementById('password').value;
 
             if (!license) {
-                document.getElementById("message").innerText = "Please upload your doctor license.";
+                alert('Please upload your doctor license.');
                 return;
             }
 
-            if (!/^\d{10}$/.test(contact)) {
-                document.getElementById("message").innerText = "Please enter a valid 10-digit contact number.";
-                return;
-            }
-
-            document.getElementById("message").style.color = "green";
-            document.getElementById("message").innerText = "Signup Successful!";
+            // Simulate successful sign-up
+            alert(`Doctor ${name} signed up successfully! our team is veify your license next will give permissoin please wait for our permission`);
+            document.getElementById('signup-form').reset();
         });
     </script>
+
 </body>
 </html>
