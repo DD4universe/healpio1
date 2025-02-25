@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adding Medicine</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #6dd5ed, #2193b0);
+            text-align: center;
+            color: white;
+        }
+        .container {
+            background: white;
+            width: 50%;
+            margin: auto;
+            padding: 20px;
+            margin-top: 50px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            color: black;
+        }
+        h2 {
+            color: #333;
+        }
+        input, button {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        table {
+            width: 90%;
+            margin: auto;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background: #28a745;
+            color: white;
+        }
+        .remove-btn {
+            background-color: red;
+            padding: 5px;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .remove-btn:hover {
+            background-color: darkred;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Adding Medicine</h2>
+        <form id="medicineForm">
+            <label>Enter Your Name / உங்கள் பெயர்:</label><br>
+            <input type="text" id="userName" placeholder="Your Name / உங்கள் பெயர்" required><br>
+
+            <label>Medical/Clinic Name / மருத்துவமனை பெயர்:</label><br>
+            <input type="text" id="clinicName" placeholder="Medical/Clinic Name / மருத்துவமனை பெயர்" required><br>
+
+            <div id="medicineFields">
+                <label>Medicine Name / மருந்து பெயர்:</label><br>
+                <input type="text" class="medicineName" placeholder="Medicine Name / மருந்து பெயர்" required><br>
+
+                <label>Count / எண்ணிக்கை:</label><br>
+                <input type="number" class="count" placeholder="Count / எண்ணிக்கை" required><br>
+            </div>
+
+            <button type="button" id="addMore">Add More Medicine / மேலும் சேர்க்க</button>
+            <button type="submit">Add / சேர்க்க</button>
+        </form>
+    </div>
+
+    <table id="medicineTable">
+        <thead>
+            <tr>
+                <th>Name / பெயர்</th>
+                <th>Clinic / மருத்துவமனை</th>
+                <th>Medicine / மருந்து</th>
+                <th>Count / எண்ணிக்கை</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        document.getElementById("medicineForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let userName = document.getElementById("userName").value;
+            let clinicName = document.getElementById("clinicName").value;
+            let medicines = document.querySelectorAll(".medicineName");
+            let counts = document.querySelectorAll(".count");
+            
+            let tableBody = document.querySelector("#medicineTable tbody");
+
+            medicines.forEach((med, index) => {
+                let medicineName = med.value;
+                let count = counts[index].value;
+
+                let row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${userName}</td>
+                    <td>${clinicName}</td>
+                    <td>${medicineName}</td>
+                    <td>${count}</td>
+                    <td><button class="remove-btn">Remove</button></td>
+                `;
+                tableBody.appendChild(row);
+
+                row.querySelector(".remove-btn").addEventListener("click", function() {
+                    row.remove();
+                });
+            });
+
+            document.getElementById("medicineForm").reset();
+        });
+
+        document.getElementById("addMore").addEventListener("click", function() {
+            let medicineFields = document.getElementById("medicineFields");
+
+            let newMedicine = document.createElement("div");
+            newMedicine.innerHTML = `
+                <label>Medicine Name / மருந்து பெயர்:</label><br>
+                <input type="text" class="medicineName" placeholder="Medicine Name / மருந்து பெயர்" required><br>
+                <label>Count / எண்ணிக்கை:</label><br>
+                <input type="number" class="count" placeholder="Count / எண்ணிக்கை" required><br>
+            `;
+            medicineFields.appendChild(newMedicine);
+        });
+    </script>
+
+</body>
+</html>
